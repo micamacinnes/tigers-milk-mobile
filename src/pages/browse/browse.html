@@ -1,0 +1,83 @@
+<!--
+  Generated template for the BrowsePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+<!--
+  Generated template for the BrowsePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Charities</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+
+  <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let item of items">
+        {{ items }}
+      </ion-item>
+    </ion-list> -->
+
+  <ion-list>
+    <ion-list-header>
+      Children
+    </ion-list-header>
+    <button ion-button clear (click)="navigateTocharitydetails(0)">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="/assets/chailifeline.jpg">
+        </ion-avatar>
+        <h2>Chai Lifeline</h2>
+        <h3>Fighting Illness with Love</h3>
+
+      </ion-item>
+     
+    </button>
+    <hr>
+    <button ion-button clear (click)="navigateTocharitydetails(1)">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="/assets/unitedhatz.png">
+        </ion-avatar>
+        <h2>United Hatzalah</h2>
+        <h3>When Seconds Count...</h3>
+        
+
+      </ion-item>
+    </button>
+    <hr>
+    <button ion-button clear (click)="navigateTocharitydetails(2)">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="/assets/kolhanearim.png">
+      </ion-avatar>
+      <h2>Kol Hanearim</h2>
+      <h3>It's easier to believe in yourself when oth... </h3>
+     
+    </ion-item>
+  </button>
+
+  <button ion-button clear (click)="navigateTocharitydetails(3)">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="/assets/shalva.jpg">
+        </ion-avatar>
+        <h2>Shalva</h2>
+        <h3>Inspiring Hope. Changing Lives. </h3>
+       
+      </ion-item>
+    </button>
+
+  </ion-list>
+
+
+</ion-content>

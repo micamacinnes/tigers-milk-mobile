@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
-
+import { BrowsePage } from '../browse/browse';
 
 @Component({
   selector: 'page-home',
@@ -22,6 +22,10 @@ export class HomePage {
   }
   navigateToRegister() {
     this.navCtrl.push(RegisterPage);
+  }
+
+  navigateTobrowse() {
+    this.navCtrl.push(BrowsePage);
   }
   }
 
