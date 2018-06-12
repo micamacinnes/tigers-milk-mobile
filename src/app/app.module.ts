@@ -11,6 +11,7 @@ import { BrowsePage } from '../pages/browse/browse';
 import { PaymentPage } from '../pages/payment/payment';
 import { ProfilePage } from '../pages/profile/profile';
 
+
 @NgModule({
   declarations: [
     MyApp,
