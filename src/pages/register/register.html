@@ -1,0 +1,33 @@
+<ion-content padding style = "background-color:lightblue" >
+    <div align="center">
+
+        <div align="center"><h1 class = "name"> Register </h1> </div> 
+    </div>
+    <ion-list>
+        <br>
+        <ion-item-group>
+            <ion-item-divider color="primary">Personal Information</ion-item-divider>
+            <ion-item>
+                <ion-input type="text" placeholder="First Name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Last Name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="date" placeholder="Birth Date"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="password" placeholder="Password"></ion-input>
+            </ion-item>
+           
+        </ion-item-group>
+    </ion-list>
+
+    <div align="center">
+        <button ion-button (click)="navigateToHome()">Register</button>
+    </div>
+
+</ion-content>
