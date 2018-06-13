@@ -7,12 +7,14 @@ import { Http, HttpModule } from "@angular/http";
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PaymentPage } from '../pages/payment/payment';
+import { RegisterPage } from '../pages/register/register';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    PaymentPage
+    PaymentPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { PaymentPage } from '../pages/payment/payment';
   entryComponents: [
     MyApp,
     HomePage,
-    PaymentPage
+    PaymentPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

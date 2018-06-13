@@ -7,7 +7,7 @@
 
 <ion-list>
 <ion-item>
-  <ion-input type="email" [(ngModel)]="username" placeholder="email"></ion-input>
+  <ion-input type="email" [(ngModel)]="email" placeholder="email"></ion-input>
 </ion-item>
 
 <ion-item>
@@ -20,7 +20,7 @@
 <br><br><br><br><br><br>
 Don't have an account?
 <br>
-<button ion-button clear small>Sign up here</button>
+<button ion-button clear small (click)="navigateToRegister()">Sign up here</button>
 </div>
 
 </ion-content>
