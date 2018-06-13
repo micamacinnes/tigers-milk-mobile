@@ -3,12 +3,13 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { Http, HttpModule } from "@angular/http";
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PaymentPage } from '../pages/payment/payment';
 import { RegisterPage } from '../pages/register/register';
 import { BrowsePage } from '../pages/browse/browse';
-import { PaymentPage } from '../pages/payment/payment';
+
 import { ProfilePage } from '../pages/profile/profile';
 
 
@@ -23,6 +24,7 @@ import { ProfilePage } from '../pages/profile/profile';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -33,6 +35,7 @@ import { ProfilePage } from '../pages/profile/profile';
     PaymentPage,
     BrowsePage,
     ProfilePage,
+
   ],
   providers: [
     StatusBar,

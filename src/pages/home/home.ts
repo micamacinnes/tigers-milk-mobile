@@ -1,5 +1,10 @@
+
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, App, NavParams } from 'ionic-angular';
+// import { LoginPage } from '../login/login';
+// import { RegisterPage } from '../registration/registration';
+import { Http } from '@angular/http';
+import { PaymentPage } from '../payment/payment';
 import { RegisterPage } from '../register/register';
 import { BrowsePage } from '../browse/browse';
 import { ProfilePage } from '../profile/profile';
@@ -9,28 +14,51 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public email: string;
+  public password: string;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) { }
+
+  login() {
+    this.http
+      .post("http://localhost:3000/login", {
+        email: this.email,
+        password: this.password
+      })
+      .subscribe(
+        result => {
+          console.log(result);
+
+          var responseJson = result.json();
+
+          localStorage.setItem("TOKEN", responseJson.token);
+          // Our username and password (on this) should have data from the user
+          this.navCtrl.push(ProfilePage, {
+            // username: this.email,
+            // password: this.password
+          });
+        },
+
+        error => {
+          console.log(error);
+        }
+      );
   }
-  presentLoading() {
-    const loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 3000
-    });
-    loader.present();
 
-  }
   navigateToRegister() {
     this.navCtrl.push(RegisterPage);
   }
-
+  
   navigateTobrowse() {
     this.navCtrl.push(BrowsePage);
   }
   navigateToprofile() {
     this.navCtrl.push(ProfilePage);
   }
-  }
+}
+
+
+
 
 

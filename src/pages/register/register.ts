@@ -1,20 +1,49 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { HomePage } from '../home/home';
-
-
-
+import { NavController, NavParams } from 'ionic-angular';
+// import { ProfilePage } from '../profile/profile';
+// import { TabsPage } from '../tabs/tabs';
+import { Http } from '@angular/http';
+import { HomePage} from '../home/home';
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html'
 })
 export class RegisterPage {
+  public email: string;
+  public password: string;
+  public firstname: string;
+  public lastname: string;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+
   }
 
-  navigateToHome() {
-    this.navCtrl.push(HomePage, {
-    });
+  register() {
+    this.http.post("http://localhost:3000/registration", {
+      email: this.email,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      password: this.password
+    })
+      .subscribe(
+        result => {
+          console.log(result);
+
+          this.navCtrl.push(HomePage, {
+            email: this.email,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            password: this.password
+          });
+        // this.navCtrl.push(ProfilePage);
+        },
+
+        error => {
+          console.log(error);
+        }
+      );
+
   }
+
+
 }
