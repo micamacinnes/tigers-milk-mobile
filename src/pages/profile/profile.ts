@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { ReactionsPage } from '../../pages/reactions/reactions';
 
 /**
  * Generated class for the ProfilePage page.
@@ -15,8 +16,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController) {
+    window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
   }
+
+  showReactions(ev){
+ 
+    let reactions = this.popoverCtrl.create(ReactionsPage);
+
+    reactions.present({
+        ev: ev
+    });
+
+}
+
+like(){
+    console.log("like");
+}
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');

@@ -8,6 +8,10 @@ import { PaymentPage } from '../payment/payment';
 import { RegisterPage } from '../register/register';
 import { BrowsePage } from '../browse/browse';
 import { ProfilePage } from '../profile/profile';
+import { StripeJavaScriptPage } from './../stripe-java-script/stripe-java-script';
+import { StripeNativePage } from '../stripe-native/stripe-native';
+ 
+
 
 @Component({
   selector: 'page-home',
@@ -50,11 +54,19 @@ export class HomePage {
     this.navCtrl.push(RegisterPage);
   }
   
-  navigateTobrowse() {
-    this.navCtrl.push(BrowsePage);
+  navigateTopayment() {
+    this.navCtrl.push(PaymentPage);
   }
   navigateToprofile() {
     this.navCtrl.push(ProfilePage);
+  }
+
+  openJavaScript(){
+    this.navCtrl.push(StripeJavaScriptPage)
+  }
+ 
+  openNative(){
+    this.navCtrl.push(StripeNativePage)
   }
 }
 

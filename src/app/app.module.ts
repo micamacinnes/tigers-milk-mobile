@@ -11,6 +11,11 @@ import { RegisterPage } from '../pages/register/register';
 import { BrowsePage } from '../pages/browse/browse';
 
 import { ProfilePage } from '../pages/profile/profile';
+import { StripeJavaScriptPage } from '../pages/stripe-java-script/stripe-java-script';
+import { StripeNativePage } from '../pages/stripe-native/stripe-native';
+import { Stripe } from '@ionic-native/stripe';
+import { ReactionsPage } from '../pages/reactions/reactions';
+ 
 
 
 @NgModule({
@@ -21,6 +26,10 @@ import { ProfilePage } from '../pages/profile/profile';
     PaymentPage,
     BrowsePage,
     ProfilePage,
+    StripeJavaScriptPage,
+    StripeNativePage,
+    ReactionsPage,
+    
   ],
   imports: [
     BrowserModule,
@@ -35,11 +44,15 @@ import { ProfilePage } from '../pages/profile/profile';
     PaymentPage,
     BrowsePage,
     ProfilePage,
+    StripeJavaScriptPage,
+    StripeNativePage,
+    ReactionsPage,
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Stripe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
