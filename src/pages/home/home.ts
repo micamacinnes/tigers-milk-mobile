@@ -12,8 +12,13 @@ import { ProfilePage } from '../profile/profile';
 import { AuthService } from "../../auth.service";
 import { TabsPage } from '../tabs/tabs';
 import { StripeJavaScriptPage } from './../stripe-java-script/stripe-java-script';
+import { PortfolioPage } from '../portfolio/portfolio';
 // import { StripeNativePage } from '../stripe-native/stripe-native';
  
+import { CharityPage } from '../charity/charity';
+import { Charity } from '../../models/charityProfile';
+import { User } from '../../models/user';
+
 
 
 @Component({
@@ -23,6 +28,8 @@ import { StripeJavaScriptPage } from './../stripe-java-script/stripe-java-script
 export class HomePage {
   public email: string;
   public password: string;
+  public charities: Array<Charity> = [];
+  public user: User = new User();
 
 
   constructor(public navCtrl: NavController, public authService: AuthService, private app: App
@@ -79,6 +86,13 @@ export class HomePage {
   navigateToRegister() {
     this.navCtrl.push(RegisterPage);
   }
+
+  navigateTobrowse(charity: Charity) {
+    this.navCtrl.push(BrowsePage, {
+      charity: charity,
+      user: this.user
+    });
+  }
   
   navigateTopayment() {
     this.navCtrl.push(PaymentPage);
@@ -90,6 +104,13 @@ export class HomePage {
   openJavaScript(){
     this.navCtrl.push(StripeJavaScriptPage)
   }
+
+  navigateToportfolio(charity: Charity) {
+    this.navCtrl.push(PortfolioPage, {
+      charity: charity,
+      user: this.user
+  });
+}
  
   // openNative(){
   //   this.navCtrl.push(StripeNativePage)

@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
 import { PaymentPage } from '../payment/payment';
-
+import { User } from '../../models/user';
 /**
  * Generated class for the CharityPage page.
  *
@@ -16,17 +16,20 @@ import { PaymentPage } from '../payment/payment';
   templateUrl: 'charity.html',
 })
 export class CharityPage {
-
-    public charity: Charity = new Charity();
+  
+  public user: User = new User();
+  public charity: Charity = new Charity();
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.charity = this.navParams.get("charity");
+      this.user = this.navParams.get("user");
     }
 
   navigateToCharity(item) {
     this.navCtrl.push(CharityPage, {
       charity: this.charity,
+      user: this.user
 
     });
   }
@@ -41,12 +44,14 @@ export class CharityPage {
   navigateToPayment() {
     this.navCtrl.push(PaymentPage, {
       charity: this.charity,
+      user: this.user
     });
   }
 
   navigateToBrowse(charity: Charity) {
     this.navCtrl.push(CharityPage, {
       charity: charity,
+      user: this.user
     });
   }
 }
