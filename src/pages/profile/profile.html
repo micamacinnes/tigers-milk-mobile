@@ -5,14 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-  <ion-navbar color="primary">
+  <ion-navbar color="main">
+    <ion-title class="headerTitle">Profile</ion-title>
     <!-- <ion-buttons left>
         <button ion-button icon-only color="light"><ion-icon name="arrow-back"></ion-icon></button>
     </ion-buttons> -->
   </ion-navbar>
 </ion-header>
  
-<ion-content fullscreen parallax-header padding style = "background-color:lightblue">
+<ion-content fullscreen parallax-header padding>
  
   <p style = "text-align:left;"> <img src = " /assets/tiger.png" width = "150" height = "150"/></p>
     <div class="header-image"></div>
@@ -44,26 +45,28 @@
           <ion-card-content>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
           </ion-card-content>
- 
-          <ion-row>
-            <ion-col>
-              <button ion-button icon-left clear small>
-                <ion-icon name="thumbs-up"></ion-icon>
-                <div>12 Likes</div>
-              </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button icon-left clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>4 Comments</div>
-              </button>
-            </ion-col>
-            <ion-col center text-center>
-              <ion-note>
-                11h ago
-              </ion-note>
-            </ion-col>
-          </ion-row>
+
+ <ion-row>
+  <ion-col>
+    <button (click)="like()" (press)="showReactions(ev)" ion-button icon-left clear small>
+      <ion-icon name="thumbs-up"></ion-icon>
+      <div>12 Likes</div>
+    </button>
+  </ion-col>
+  <ion-col>
+    <button (click)="like()" (press)="showReactions(ev)" ion-button icon-left clear small>
+      <ion-icon name="text"></ion-icon>
+      <div>4 Comments</div>
+    </button>
+  </ion-col>
+  <ion-col center text-center>
+    <ion-note>
+      11h ago
+    </ion-note>
+  </ion-col>
+</ion-row>
     </div>
+
+    <button ion-button (click)="logout()" class="button">Logout</button>
  
 </ion-content>

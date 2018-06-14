@@ -38,7 +38,9 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  main: lightblue,
+  pure: #ffffff
 );
 
 
@@ -86,3 +88,15 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+ 
+$popover-ios-width: 95%;
+ 
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+ 
+$popover-md-width: 95%;
