@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, UrlSerializer, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, UrlSerializer, App, PopoverController  } from 'ionic-angular';
 import { User } from '../../models/user';
 import { HomePage } from '../home/home';
+import { ReactionsPage } from '../../pages/reactions/reactions';
 
 /**
  * Generated class for the ProfilePage page.
@@ -22,10 +23,26 @@ export class ProfilePage {
 
   public user: User; 
   private token: string;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private app: App) {
+    
+  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController, private app: App) {
+    window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
     this.user = new User();
   }
+
+  showReactions(ev){
+ 
+    let reactions = this.popoverCtrl.create(ReactionsPage);
+
+    reactions.present({
+        ev: ev
+    });
+
+}
+
+like(){
+    console.log("like");
+}
+
 
   ionViewDidLoad() {
 

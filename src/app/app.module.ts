@@ -14,6 +14,11 @@ import { ProfilePage } from '../pages/profile/profile';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AuthService } from '../auth.service';
 import { PortfolioPage } from '../pages/portfolio/portfolio';
+import { StripeJavaScriptPage } from '../pages/stripe-java-script/stripe-java-script';
+// import { StripeNativePage } from '../pages/stripe-native/stripe-native';
+import { Stripe } from '@ionic-native/stripe';
+import { ReactionsPage } from '../pages/reactions/reactions';
+ 
 
 
 @NgModule({
@@ -25,7 +30,11 @@ import { PortfolioPage } from '../pages/portfolio/portfolio';
     BrowsePage,
     ProfilePage,
     TabsPage,
-    PortfolioPage
+    PortfolioPage,
+    StripeJavaScriptPage,
+    // StripeNativePage,
+    ReactionsPage,
+    
   ],
   imports: [
     BrowserModule,
@@ -41,12 +50,17 @@ import { PortfolioPage } from '../pages/portfolio/portfolio';
     BrowsePage,
     ProfilePage,
     TabsPage,
-    PortfolioPage
+    PortfolioPage,
+    StripeJavaScriptPage,
+    // StripeNativePage,
+    ReactionsPage,
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AuthService,
+    Stripe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

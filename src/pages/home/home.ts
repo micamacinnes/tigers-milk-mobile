@@ -10,6 +10,11 @@ import { BrowsePage } from '../browse/browse';
 import { ProfilePage } from '../profile/profile';
 import { AuthService } from "../../auth.service";
 import { TabsPage } from '../tabs/tabs';
+import { StripeJavaScriptPage } from './../stripe-java-script/stripe-java-script';
+// import { StripeNativePage } from '../stripe-native/stripe-native';
+ 
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -74,11 +79,19 @@ export class HomePage {
     this.navCtrl.push(RegisterPage);
   }
   
-  navigateTobrowse() {
-    this.navCtrl.push(BrowsePage);
+  navigateTopayment() {
+    this.navCtrl.push(PaymentPage);
   }
-  // navigateToprofile() {
-  //   this.navCtrl.push(ProfilePage);
+  navigateToprofile() {
+    this.navCtrl.push(ProfilePage);
+  }
+
+  openJavaScript(){
+    this.navCtrl.push(StripeJavaScriptPage)
+  }
+ 
+  // openNative(){
+  //   this.navCtrl.push(StripeNativePage)
   // }
 }
 
