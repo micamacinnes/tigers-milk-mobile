@@ -10,6 +10,7 @@ import { RegisterPage } from '../pages/register/register';
 import { BrowsePage } from '../pages/browse/browse';
 import { PaymentPage } from '../pages/payment/payment';
 import { ProfilePage } from '../pages/profile/profile';
+import { CharityPage } from '../pages/charity/charity';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ProfilePage } from '../pages/profile/profile';
     PaymentPage,
     BrowsePage,
     ProfilePage,
+    CharityPage
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { ProfilePage } from '../pages/profile/profile';
     PaymentPage,
     BrowsePage,
     ProfilePage,
+    CharityPage
   ],
   providers: [
     StatusBar,

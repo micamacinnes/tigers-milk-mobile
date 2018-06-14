@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { BrowsePage } from '../browse/browse';
 import { ProfilePage } from '../profile/profile';
@@ -10,9 +10,12 @@ import { ProfilePage } from '../profile/profile';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
 
-  }
+
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams) {
+    
+  
+}
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: "Please wait...",
@@ -22,15 +25,21 @@ export class HomePage {
 
   }
   navigateToRegister() {
-    this.navCtrl.push(RegisterPage);
-  }
+    this.navCtrl.push(RegisterPage, {
+
+  });
+}
 
   navigateTobrowse() {
-    this.navCtrl.push(BrowsePage);
-  }
+    this.navCtrl.push(BrowsePage, {
+
+  });
+}
+
   navigateToprofile() {
-    this.navCtrl.push(ProfilePage);
+    this.navCtrl.push(ProfilePage, {
+  });
   }
-  }
+}
 
 
