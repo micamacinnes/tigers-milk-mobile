@@ -19,7 +19,7 @@
 
     <div align="center"><h1 class = "name">Browse Charities</h1> </div> 
     <br>
-    <ion-list>
+    <!-- <ion-list>
         <ion-item *ngFor="let charity of charities">
           <h2>{{ charity.name }}</h2>
           <p>{{ charity.description }}</p>
@@ -27,6 +27,32 @@
         </ion-item>
 
 
-      </ion-list>
+      </ion-list> -->
+
+      <ion-card>
+
+          <img src="assets/img/nin-live.png"/>
+      
+          <ion-card-content *ngFor="let charity of charities">
+            <ion-card-title>
+                {{ charity.name }}
+            </ion-card-title>
+            <ion-row no-padding>
+                <ion-col>
+                  <button ion-button clear small color="danger" icon-start>
+                    <ion-icon name='star'></ion-icon>
+                    Favorite
+                  </button>
+                </ion-col>
+                <ion-col text-right>
+                  <button ion-button clear small color="danger" icon-start (click)="navigateToCharity(charity)">
+                    <ion-icon name='share-alt'></ion-icon>
+                    More
+                  </button>
+                </ion-col>
+              </ion-row>
+          </ion-card-content>
+     </ion-card>
+  
 
 </ion-content>

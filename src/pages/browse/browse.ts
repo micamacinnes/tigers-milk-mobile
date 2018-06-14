@@ -29,6 +29,7 @@ export class BrowsePage {
     charity1.slogan = "Save Animals!";
     charity1.about = "We give dogs and cats a second chance.";
 
+
     var charity2 = new Charity();
     charity2.id = 2;
     charity2.name = "Tiger Haven";
