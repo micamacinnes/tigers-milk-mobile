@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Http, HttpModule } from "@angular/http";
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PaymentPage } from '../pages/payment/payment';
+// import { PaymentPage } from '../pages/payment/payment';
 import { RegisterPage } from '../pages/register/register';
 import { BrowsePage } from '../pages/browse/browse';
 
@@ -23,7 +23,7 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     MyApp,
     HomePage,
     RegisterPage,
-    PaymentPage,
+    // PaymentPage,
     BrowsePage,
     ProfilePage,
     StripeJavaScriptPage,
@@ -41,7 +41,7 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     MyApp,
     HomePage,
     RegisterPage,
-    PaymentPage,
+    // PaymentPage,
     BrowsePage,
     ProfilePage,
     StripeJavaScriptPage,

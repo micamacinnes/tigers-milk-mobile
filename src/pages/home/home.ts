@@ -4,7 +4,7 @@ import { NavController, App, NavParams } from 'ionic-angular';
 // import { LoginPage } from '../login/login';
 // import { RegisterPage } from '../registration/registration';
 import { Http } from '@angular/http';
-import { PaymentPage } from '../payment/payment';
+// import { PaymentPage } from '../payment/payment';
 import { RegisterPage } from '../register/register';
 import { BrowsePage } from '../browse/browse';
 import { ProfilePage } from '../profile/profile';
@@ -54,9 +54,9 @@ export class HomePage {
     this.navCtrl.push(RegisterPage);
   }
   
-  navigateTopayment() {
-    this.navCtrl.push(PaymentPage);
-  }
+  // navigateTopayment() {
+  //   this.navCtrl.push(PaymentPage);
+  // }
   navigateToprofile() {
     this.navCtrl.push(ProfilePage);
   }
