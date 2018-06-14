@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
-import { PaymentPage } from '../payment/payment';
+import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
 
 /**
  * Generated class for the CharityPage page.
@@ -39,7 +39,7 @@ export class CharityPage {
   
 
   navigateToPayment() {
-    this.navCtrl.push(PaymentPage, {
+    this.navCtrl.push(StripeJavaScriptPage, {
       charity: this.charity,
     });
   }
