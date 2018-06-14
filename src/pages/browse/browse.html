@@ -13,12 +13,8 @@
 
 <ion-content padding style = "background-color:lightblue">
 
-    <ion-navbar>
-        <ion-title><h1>Back</h1></ion-title>
-      </ion-navbar>
-
     <div align="center"><h1 class = "name">Browse Charities</h1> </div> 
-    <br>
+
     <!-- <ion-list>
         <ion-item *ngFor="let charity of charities">
           <h2>{{ charity.name }}</h2>
@@ -31,15 +27,15 @@
 
       <ion-card>
 
-          <img src="assets/img/nin-live.png"/>
-      
           <ion-card-content *ngFor="let charity of charities">
+             <img src="assets/rhino.jpg"/>
+          
             <ion-card-title>
                 {{ charity.name }}
             </ion-card-title>
             <ion-row no-padding>
                 <ion-col>
-                  <button ion-button clear small color="danger" icon-start>
+                  <button ion-button clear small color="danger" icon-start  (click)="doAlert()">
                     <ion-icon name='star'></ion-icon>
                     Favorite
                   </button>
@@ -49,10 +45,14 @@
                     <ion-icon name='share-alt'></ion-icon>
                     More
                   </button>
+                 
                 </ion-col>
               </ion-row>
           </ion-card-content>
+          <br>
      </ion-card>
+     
+     
   
 
 </ion-content>

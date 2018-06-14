@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CharityPage } from '../charity/charity';
 import { Charity } from '../../models/charityProfile';
-
+import { AlertController } from 'ionic-angular';
 
 
 /**
@@ -22,13 +22,14 @@ export class BrowsePage {
   public charities: Array<Charity> = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     var charity1 = new Charity();
     charity1.id = 1;
     charity1.name = "Domestic Animal Rescue Group";
     charity1.slogan = "Save Animals!";
     charity1.about = "We give dogs and cats a second chance.";
-
+    charity1.image = "www.letsgo.co.za/medialibrary/Event/820x410/178.jpg";
+    
 
     var charity2 = new Charity();
     charity2.id = 2;
@@ -45,6 +46,13 @@ export class BrowsePage {
     this.charities.push(charity1);
     this.charities.push(charity2);
     this.charities.push(charity3);
+  }
+  doAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'This charity has been added to your favorites',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   ionViewDidLoad() {

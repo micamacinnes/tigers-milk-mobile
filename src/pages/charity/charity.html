@@ -12,14 +12,15 @@
   </ion-navbar>
 
 </ion-header>
-<div align="center"><h1 class = "name"> {{charity.name}} </h1> </div> 
+<br>
+<h1 class = "name"> {{charity.name}} </h1> 
 
 
-<ion-content padding>
+<ion-content>
   <ion-item-group>
     <ion-item-divider color="primary"><font size="4">Our Mission</font></ion-item-divider>
     <font size="5"><p padding-right="10" padding-left="10">{{charity.slogan}}</p></font><hr>
-    <ion-item-divider color="primary"><font size="4">What we do</font></ion-item-divider>
+    <ion-item-divider color="primary"><font size="3">What we do</font></ion-item-divider>
     <font size="4"><p padding-right="10" padding-left="10">{{charity.about}}</p></font><hr>
     <ion-item-divider color="primary"><font size="4">Total Donated to {{charity.name}}</font></ion-item-divider>
     <font size="5"><p padding-right="10" padding-left="10">$1,000</p></font><hr>
@@ -35,8 +36,8 @@
     <button ion-button full clear small>
       Twitter
     </button>
-  
-    <ion-item-divider color="primary">
+    <br>
+    <ion-item-divider color="danger">
         <button ion-button full clear small (click)="navigateToPayment()">
             <font color="white" size="5">Donate Now!</font>
         </button>
