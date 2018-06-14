@@ -11,6 +11,9 @@ import { RegisterPage } from '../pages/register/register';
 import { BrowsePage } from '../pages/browse/browse';
 
 import { ProfilePage } from '../pages/profile/profile';
+import { TabsPage } from '../pages/tabs/tabs';
+import { AuthService } from '../auth.service';
+import { PortfolioPage } from '../pages/portfolio/portfolio';
 
 
 @NgModule({
@@ -21,6 +24,8 @@ import { ProfilePage } from '../pages/profile/profile';
     PaymentPage,
     BrowsePage,
     ProfilePage,
+    TabsPage,
+    PortfolioPage
   ],
   imports: [
     BrowserModule,
@@ -35,11 +40,13 @@ import { ProfilePage } from '../pages/profile/profile';
     PaymentPage,
     BrowsePage,
     ProfilePage,
-
+    TabsPage,
+    PortfolioPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

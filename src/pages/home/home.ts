@@ -8,7 +8,8 @@ import { PaymentPage } from '../payment/payment';
 import { RegisterPage } from '../register/register';
 import { BrowsePage } from '../browse/browse';
 import { ProfilePage } from '../profile/profile';
-
+import { AuthService } from "../../auth.service";
+import { TabsPage } from '../tabs/tabs';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,33 +19,56 @@ export class HomePage {
   public password: string;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) { }
+  constructor(public navCtrl: NavController, public authService: AuthService, private app: App
+  ) {
+    // if (localStorage.getItem("TOKEN")) {
+    //   this.app.getRootNav().setRoot(ProfilePage);
+    // }
+  }
+
+  ionViewDidLoad() {
+    console.log("ionViewDidLoad LoginPage");
+  }
 
   login() {
-    this.http
-      .post("http://localhost:3000/login", {
-        email: this.email,
-        password: this.password
-      })
-      .subscribe(
-        result => {
-          console.log(result);
+    let callback = (err) => {
+      if (err) {
+        // TODO: display error
+        return;
+      }
 
-          var responseJson = result.json();
+      //this.navCtrl.setRoot(ProfilePage);
+      this.navCtrl.setRoot(TabsPage);
+    }
 
-          localStorage.setItem("TOKEN", responseJson.token);
-          // Our username and password (on this) should have data from the user
-          this.navCtrl.push(ProfilePage, {
-            // username: this.email,
-            // password: this.password
-          });
-        },
-
-        error => {
-          console.log(error);
-        }
-      );
+    this.authService.login(this.email, this.password, callback);
   }
+
+  // login() {
+  //   this.http
+  //     .post("http://localhost:3000/login", {
+  //       email: this.email,
+  //       password: this.password
+  //     })
+  //     .subscribe(
+  //       result => {
+  //         console.log(result);
+
+  //         var responseJson = result.json();
+
+  //         localStorage.setItem("TOKEN", responseJson.token);
+  //         // Our username and password (on this) should have data from the user
+  //         this.navCtrl.push(ProfilePage, {
+  //           // username: this.email,
+  //           // password: this.password
+  //         });
+  //       },
+
+  //       error => {
+  //         console.log(error);
+  //       }
+  //     );
+  // }
 
   navigateToRegister() {
     this.navCtrl.push(RegisterPage);
@@ -53,9 +77,9 @@ export class HomePage {
   navigateTobrowse() {
     this.navCtrl.push(BrowsePage);
   }
-  navigateToprofile() {
-    this.navCtrl.push(ProfilePage);
-  }
+  // navigateToprofile() {
+  //   this.navCtrl.push(ProfilePage);
+  // }
 }
 
 
