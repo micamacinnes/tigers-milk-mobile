@@ -12,7 +12,7 @@ import { BrowsePage } from '../pages/browse/browse';
 
 import { ProfilePage } from '../pages/profile/profile';
 import { StripeJavaScriptPage } from '../pages/stripe-java-script/stripe-java-script';
-import { StripeNativePage } from '../pages/stripe-native/stripe-native';
+// import { StripeNativePage } from '../pages/stripe-native/stripe-native';
 import { Stripe } from '@ionic-native/stripe';
 import { ReactionsPage } from '../pages/reactions/reactions';
  
@@ -27,7 +27,7 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     BrowsePage,
     ProfilePage,
     StripeJavaScriptPage,
-    StripeNativePage,
+    // StripeNativePage,
     ReactionsPage,
     
   ],
@@ -45,7 +45,7 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     BrowsePage,
     ProfilePage,
     StripeJavaScriptPage,
-    StripeNativePage,
+    // StripeNativePage,
     ReactionsPage,
 
   ],

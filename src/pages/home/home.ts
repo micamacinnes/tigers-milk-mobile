@@ -9,7 +9,7 @@ import { RegisterPage } from '../register/register';
 import { BrowsePage } from '../browse/browse';
 import { ProfilePage } from '../profile/profile';
 import { StripeJavaScriptPage } from './../stripe-java-script/stripe-java-script';
-import { StripeNativePage } from '../stripe-native/stripe-native';
+// import { StripeNativePage } from '../stripe-native/stripe-native';
  
 
 
@@ -65,9 +65,9 @@ export class HomePage {
     this.navCtrl.push(StripeJavaScriptPage)
   }
  
-  openNative(){
-    this.navCtrl.push(StripeNativePage)
-  }
+  // openNative(){
+  //   this.navCtrl.push(StripeNativePage)
+  // }
 }
 
 
