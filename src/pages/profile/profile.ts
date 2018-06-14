@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, UrlSerializer, App, PopoverController  } from 'ionic-angular';
+import { User } from '../../models/user';
+import { HomePage } from '../home/home';
 import { ReactionsPage } from '../../pages/reactions/reactions';
 
 /**
@@ -16,8 +18,15 @@ import { ReactionsPage } from '../../pages/reactions/reactions';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController) {
+  // public firstname: string;
+  // public lastname: string;
+
+  public user: User; 
+  private token: string;
+    
+  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController, private app: App) {
     window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
+    this.user = new User();
   }
 
   showReactions(ev){
@@ -36,7 +45,15 @@ like(){
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+
+    this.token = localStorage.getItem("TOKEN");
+    console.log("profile token", this.token)
+
+    // ask how to get info from token
   }
 
+  logout(){
+    this.app.getRootNav().setRoot(HomePage);
+    this.navCtrl.popToRoot();
+  }
 }

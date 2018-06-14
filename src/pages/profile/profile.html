@@ -5,14 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-  <ion-navbar color="primary">
+  <ion-navbar color="main">
+    <ion-title class="headerTitle">Profile</ion-title>
     <!-- <ion-buttons left>
         <button ion-button icon-only color="light"><ion-icon name="arrow-back"></ion-icon></button>
     </ion-buttons> -->
   </ion-navbar>
 </ion-header>
  
-<ion-content fullscreen parallax-header padding style = "background-color:lightblue">
+<ion-content fullscreen parallax-header padding>
  
   <p style = "text-align:left;"> <img src = " /assets/tiger.png" width = "150" height = "150"/></p>
     <div class="header-image"></div>
@@ -65,5 +66,7 @@
   </ion-col>
 </ion-row>
     </div>
+
+    <button ion-button (click)="logout()" class="button">Logout</button>
  
 </ion-content>

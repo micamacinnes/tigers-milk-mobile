@@ -11,6 +11,10 @@ import { RegisterPage } from '../pages/register/register';
 import { BrowsePage } from '../pages/browse/browse';
 
 import { ProfilePage } from '../pages/profile/profile';
+import { CharityPage } from '../pages/charity/charity';
+import { TabsPage } from '../pages/tabs/tabs';
+import { AuthService } from '../auth.service';
+import { PortfolioPage } from '../pages/portfolio/portfolio';
 import { StripeJavaScriptPage } from '../pages/stripe-java-script/stripe-java-script';
 // import { StripeNativePage } from '../pages/stripe-native/stripe-native';
 import { Stripe } from '@ionic-native/stripe';
@@ -26,6 +30,9 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     // PaymentPage,
     BrowsePage,
     ProfilePage,
+    CharityPage,
+    TabsPage,
+    PortfolioPage,
     StripeJavaScriptPage,
     // StripeNativePage,
     ReactionsPage,
@@ -44,6 +51,9 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     // PaymentPage,
     BrowsePage,
     ProfilePage,
+    CharityPage,
+    TabsPage,
+    PortfolioPage,
     StripeJavaScriptPage,
     // StripeNativePage,
     ReactionsPage,
@@ -52,6 +62,7 @@ import { ReactionsPage } from '../pages/reactions/reactions';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     Stripe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
