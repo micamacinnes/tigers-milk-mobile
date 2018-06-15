@@ -9,7 +9,7 @@ declare var Stripe;
 })
 export class StripeJavaScriptPage {
  
-  stripe = Stripe('YOUR_API_KEY');
+  stripe = Stripe('pk_test_3SwPUqJIjakXCBIy3ytwG8st');
   card: any;
  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
