@@ -1,5 +1,5 @@
 export class MyCharity {
-    id: number;
-    name: string;
-    percentage: number;
+    user_id: number;
+    charity_id: string;
+    amount: number;
 }

@@ -4,22 +4,27 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header no-border>
+<ion-header >
   <ion-navbar color="main">
-    <ion-title class="headerTitle">Profile</ion-title>
-    <!-- <ion-buttons left>
-        <button ion-button icon-only color="light"><ion-icon name="arrow-back"></ion-icon></button>
-    </ion-buttons> -->
+    <ion-title class="headerTitle">{{this.user.firstname}}'s Profile</ion-title>
+    <ion-buttons right>
+        <button ion-button>Edit</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
  
 <ion-content fullscreen parallax-header padding>
- 
-  <p style = "text-align:left;"> <img src = " /assets/tiger.png" width = "150" height = "150"/></p>
+ <ion-row>
+   <ion-col><img src = " /assets/tiger.png" width = "150" height = "150"/></ion-col>
+   <ion-col class="money">
+     <p class="amount"><strong>$100</strong></p>
+     <p class="donations"><strong>Total Donated</strong></p>
+   </ion-col>
+ </ion-row>
+  
     <div class="header-image"></div>
  
     <div class="main-content">
- 
         <ion-segment [(ngModel)]="category">
             <ion-segment-button value="gear">
                 Impact
@@ -40,11 +45,29 @@
             <p>June 12, 2018</p>
           </ion-item>
  
-          <img src="http://placehold.it/500x200" />
+          <img src="assets/rhino.jpg" />
  
           <ion-card-content>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            <p>
+                The Tiger Foundation just got a donation of $100! We are now $100 closer to our goal of $3000. Checkout our website for how else you can help!
+            </p>
           </ion-card-content>
+
+          <ion-item>
+              <ion-avatar item-left>
+                <img src= "/assets/tiger.png" />
+              </ion-avatar>
+              <h2>Save the Rhinos</h2>
+              <p>June 5, 2018</p>
+            </ion-item>
+   
+            <img src="assets/rhino.jpg" />
+   
+            <ion-card-content>
+              <p>
+                  One of our Rhinos just had a baby! Donate now and you'll get to nanme him! Visit our Facebook for pictures.
+              </p>
+            </ion-card-content>
 
  <ion-row>
   <ion-col>
@@ -67,6 +90,6 @@
 </ion-row>
     </div>
 
-    <button ion-button (click)="logout()" class="button">Logout</button>
+    <button ion-button (click)="logout()" class="key">Logout</button>
  
 </ion-content>

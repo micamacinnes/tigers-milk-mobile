@@ -1,52 +1,38 @@
-<!--
-  Generated template for the BrowsePage page.
+<ion-header>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-<!--
-  Generated template for the BrowsePage page.
+  <ion-navbar color="main">
+    <ion-title>Charities</ion-title>
+  </ion-navbar>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-content padding style = "background-color:lightblue">
-=======
-<!-- style = "background-color:lightblue" -->
-    <div align="center"><h1 class = "name">Browse Charities</h1> </div> 
+</ion-header>
 
-    <!-- <ion-list>
-        <ion-item *ngFor="let charity of charities">
-          <h2>{{ charity.name }}</h2>
-          <p>{{ charity.description }}</p>
-          <button ion-button clear item-end (click)="navigateToCharity(charity)">More</button>
-        </ion-item>
+<ion-content padding>
 
 
-      </ion-list> -->
+  <ion-card *ngFor="let charity of charities">
+    <img src="assets/rhino.jpg" />
+    <ion-card-content>
+      <ion-card-title>
+        {{ charity.name }}
+      </ion-card-title>
+      <p>{{charity.slogan}}</p>
+    </ion-card-content>
+    <ion-row no-padding>
+      <!-- <ion-col>
+        <button ion-button clear small (click)="doAlert()" ><ion-icon name="star"></ion-icon>
+          Favorite 
+        </button>
+      </ion-col> -->
+      <ion-col text-right>
+        <button ion-button class="key" (click)="navigateToCharity(charity)">
+            <!-- clear small color="danger" icon-start
+          <ion-icon name='share-alt'></ion-icon> -->
+          Details
+        </button>
 
-      <ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <br>
 
-          <ion-card-content *ngFor="let charity of charities">
-             <img src="assets/rhino.jpg"/>
-          
-            <ion-card-title>
-                {{ charity.name }}
-            </ion-card-title>
-            <ion-row no-padding>
-                <ion-col>
-                  <button ion-button clear small color="danger" icon-start  (click)="doAlert()">
-                    <ion-icon name='star'></ion-icon>
-                    Favorite
-                  </button>
-                </ion-col>
-                <ion-col text-right>
-                  <button ion-button clear small color="danger" icon-start (click)="navigateToCharity(charity)">
-                    <ion-icon name='share-alt'></ion-icon>
-                    More
-                  </button>
-                 
-                </ion-col>
-              </ion-row>
-          </ion-card-content>
-          <br>
-     </ion-card>
 </ion-content>

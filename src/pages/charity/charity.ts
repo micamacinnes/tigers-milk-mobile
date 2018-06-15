@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
 import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
@@ -20,7 +20,7 @@ export class CharityPage {
     public charity: Charity = new Charity();
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
       this.charity = this.navParams.get("charity");
     }
 
@@ -30,6 +30,7 @@ export class CharityPage {
 
     });
   }
+
 
   // ionViewDidLoad() {
   //   this.user = this.navParams.get("user");
@@ -49,4 +50,22 @@ export class CharityPage {
       charity: charity,
     });
   }
+  
+  presentToast() {
+    let charity: Charity = this.charity;
+    let toast = this.toastCtrl.create({
+      message: 'Added to NewsFeed',
+      duration: 2000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+    console.log('added to feed')
+  }
+
+  
 }

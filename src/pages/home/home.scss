@@ -5,9 +5,18 @@ page-home {
         width: 100%;
         font-family: monospace;
         color: white;
-        padding-top: 2em;
+        padding-top: 20px;
         padding-left: 25px;
         margin: auto;
         text-align: center;
+    }
+
+    p {
+        color: black;
+    }
+
+    .sign {
+        color: black;
+        font-size: 15px;
     }
 }

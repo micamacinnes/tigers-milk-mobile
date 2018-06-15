@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CharityPage } from '../charity/charity';
 import { Charity } from '../../models/charityProfile';
-import { AlertController } from 'ionic-angular';
 
 
 /**
@@ -27,21 +26,20 @@ export class BrowsePage {
     charity1.id = 1;
     charity1.name = "Domestic Animal Rescue Group";
     charity1.slogan = "Save Animals!";
-    charity1.about = "We give dogs and cats a second chance.";
-    charity1.image = "www.letsgo.co.za/medialibrary/Event/820x410/178.jpg";
+    charity1.about = "DARG is a pro-life, non-profit organisation that rescues, cares for, sterilizes and rehomes previously abused, neglected and abandoned cats and dogs. DARG provides a crucial role for the communities of Imizamo Yethu, Hangberg and the greater Hout Bay area.";
     
 
     var charity2 = new Charity();
     charity2.id = 2;
     charity2.name = "Tiger Haven";
     charity2.slogan = "Save the Tigers!";
-    charity2.about = "A safe place for big cats.";
+    charity2.about = "Tiger Haven is a Sanctuary and Rescue facility for big cats, much like an animal shelter for dogs and house cats. Tiger Haven is a no kill shelter for big cats unlike most but not all domestic animal shelters.";
 
     var charity3 = new Charity();
     charity3.id = 3;
     charity3.name = "Rhino Rescue Project";
     charity3.slogan = "Save the Rhinos!";
-    charity3.about = "Proactive Poaching Prevention.";
+    charity3.about = "The Rescue Project offers a sustainable, cost effective defensive strategy to protect rhinos in South Africa and elsewhere from poaching.";
 
     this.charities.push(charity1);
     this.charities.push(charity2);
@@ -65,9 +63,9 @@ export class BrowsePage {
 
   }
 
-  navigateToBrowse(charity: Charity) {
-    this.navCtrl.push(CharityPage, {
-      charity: charity,
-    });
-  }
+  // navigateToBrowse(charity: Charity) {
+  //   this.navCtrl.push(CharityPage, {
+  //     charity: charity,
+  //   });
+  // }
 }
