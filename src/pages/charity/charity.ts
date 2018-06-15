@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
+// import { PaymentPage } from '../payment/payment';
+import { User } from '../../models/user';
 import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
 
 /**
@@ -16,17 +18,20 @@ import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
   templateUrl: 'charity.html',
 })
 export class CharityPage {
-
-    public charity: Charity = new Charity();
+  
+  public user: User = new User();
+  public charity: Charity = new Charity();
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
       this.charity = this.navParams.get("charity");
+      this.user = this.navParams.get("user");
     }
 
   navigateToCharity(item) {
     this.navCtrl.push(CharityPage, {
       charity: this.charity,
+      user: this.user
 
     });
   }
@@ -42,12 +47,14 @@ export class CharityPage {
   navigateToPayment() {
     this.navCtrl.push(StripeJavaScriptPage, {
       charity: this.charity,
+      user: this.user
     });
   }
 
   navigateToBrowse(charity: Charity) {
     this.navCtrl.push(CharityPage, {
       charity: charity,
+      user: this.user
     });
   }
   

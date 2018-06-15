@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CharityPage } from '../charity/charity';
 import { Charity } from '../../models/charityProfile';
+import { User } from '../../models/user';
+
 
 
 /**
@@ -19,9 +21,11 @@ import { Charity } from '../../models/charityProfile';
 export class BrowsePage {
 
   public charities: Array<Charity> = [];
+  public user: User = new User();
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    this.user = this.navParams.get("user");
     var charity1 = new Charity();
     charity1.id = 1;
     charity1.name = "Domestic Animal Rescue Group";
@@ -59,13 +63,15 @@ export class BrowsePage {
   navigateToCharity(charity: Charity) {
     this.navCtrl.push(CharityPage, {
       charity: charity,
+      user: this.user
     });
 
   }
 
-  // navigateToBrowse(charity: Charity) {
-  //   this.navCtrl.push(CharityPage, {
-  //     charity: charity,
-  //   });
-  // }
+  navigateToBrowse(charity: Charity) {
+    this.navCtrl.push(CharityPage, {
+      charity: charity,
+      user: this.user
+    });
+  }
 }
