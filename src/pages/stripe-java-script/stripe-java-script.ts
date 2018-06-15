@@ -125,7 +125,7 @@ export class StripeJavaScriptPage {
             loading.onDidDismiss(() => {
               console.log('Dismissed loading');
               let toast = this.toastCtrl.create({
-                message: 'You\'re doantion has been sent.',
+                message: 'You\'re donation has been sent.',
                 duration: 3000,
                 position: 'middle'
               });
