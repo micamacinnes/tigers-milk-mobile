@@ -23,7 +23,7 @@ export class StripeJavaScriptPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController, public toastCtrl: ToastController,private http: Http) {
       var newDonation = new MyCharity();
-      newDonation.amount += this.amount;
+      newDonation.percentage += this.amount;
       
       this.charity = this.navParams.get('charity');
   }
