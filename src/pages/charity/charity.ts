@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
-// import { PaymentPage } from '../payment/payment';
 import { User } from '../../models/user';
 import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
 /**
