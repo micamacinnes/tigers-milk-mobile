@@ -20,13 +20,21 @@
 <ion-content padding>
 
   <!-- Payment amount -->
-  <ion-list>
+  <!-- <ion-list>
     <ion-list-header>Donation Amount</ion-list-header>
     <ion-item>
       <ion-label>$</ion-label>  
       <ion-input [(ngModel)]="amount" type="number"></ion-input>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
+
+  <ion-list>
+    <ion-item>
+        <ion-label>Amount $</ion-label>
+        <ion-input placeholder="9.99" type="usd" [(ngModel)]="amount"></ion-input>
+    </ion-item>
+</ion-list>
+<form action="/" method="post" id="payment-form">
 
   <!-- Payment plan -->
   <ion-list radio-group>
@@ -35,11 +43,11 @@
     </ion-list-header>
     <ion-item>
       <ion-label>One-Time</ion-label>
-      <ion-radio value="one-time" checked></ion-radio>
+      <ion-radio value="one-time" ></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Monthly</ion-label>
-      <ion-radio value="monthly"></ion-radio>
+      <ion-radio value="monthly" checked></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Yearly</ion-label>
@@ -49,10 +57,20 @@
   </ion-list>
 
   <!-- Payment input -->
+
+  
+
   <ion-list>
     <ion-list-header>
       Card Information
     </ion-list-header>
+
+    <form action="your-server-side-code" method="POST">
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_3SwPUqJIjakXCBIy3ytwG8st" data-amount="999"
+          data-name="Demo Site" data-description="Example charge" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto" data-zip-code="true">
+          </script>
+  </form>
 
     <ion-item>
         <ion-label stacked>Card Holder Name</ion-label>
@@ -72,9 +90,10 @@
       <div id="card-errors" role="alert"></div>
     </div>
 
-  <button ion-button block large type="submit">Add Card</button>
+    <button ion-button center full padding (click)=submittingPayment()>Donate ${{amount}}</button>
+  <!-- <button ion-button block large type="submit">submit</button> -->
     
-  <button ion-button block large type="button" (click)="confirmDonate()">Donate</button>
+  <!-- <button ion-button block large type="button" (click)="confirmDonate()">Donate</button> -->
 
   </form>
 
