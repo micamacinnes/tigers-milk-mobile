@@ -2,13 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
-<<<<<<< HEAD
 import { PaymentPage } from '../payment/payment';
 import { User } from '../../models/user';
-=======
 import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
-
->>>>>>> 4a56c5c93ef3ecfcb7c6ce58c1140f886f051207
 /**
  * Generated class for the CharityPage page.
  *
