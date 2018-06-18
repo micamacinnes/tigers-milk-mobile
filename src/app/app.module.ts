@@ -19,6 +19,7 @@ import { StripeJavaScriptPage } from '../pages/stripe-java-script/stripe-java-sc
 // import { StripeNativePage } from '../pages/stripe-native/stripe-native';
 import { Stripe } from '@ionic-native/stripe';
 import { ReactionsPage } from '../pages/reactions/reactions';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
  
 
 
@@ -36,7 +37,7 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     StripeJavaScriptPage,
     // StripeNativePage,
     ReactionsPage,
-    
+    EditProfilePage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,7 @@ import { ReactionsPage } from '../pages/reactions/reactions';
     StripeJavaScriptPage,
     // StripeNativePage,
     ReactionsPage,
-
+    EditProfilePage
   ],
   providers: [
     StatusBar,

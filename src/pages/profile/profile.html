@@ -8,7 +8,7 @@
   <ion-navbar color="main">
     <ion-title class="headerTitle">{{this.user.firstname}}'s Profile</ion-title>
     <ion-buttons right>
-        <button ion-button>Edit</button>
+        <button ion-button (click)="navigateToEditProfileModal()">Edit</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>

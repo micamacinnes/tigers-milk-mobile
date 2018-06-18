@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, UrlSerializer, App, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, UrlSerializer, App, PopoverController, ModalController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { HomePage } from '../home/home';
 import { ReactionsPage } from '../../pages/reactions/reactions';
 import { Http } from '@angular/http';
 import { MyCharity } from '../../models/myCharity';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 /**
  * Generated class for the ProfilePage page.
@@ -26,7 +27,8 @@ export class ProfilePage {
   public user: User;
   private token: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController, private app: App, private http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController, private app: App,
+    private http: Http, public modalCtrl: ModalController) {
     window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
     this.user = new User();
 
@@ -60,6 +62,14 @@ export class ProfilePage {
           console.log(error);
         }
       );
+  }
+
+  navigateToEditProfileModal(){
+    let modal = this.modalCtrl.create(EditProfilePage, { token: this.token });
+    modal.present();
+    this.navCtrl.push(EditProfilePage, {
+      token: this.token,
+    });
   }
 
   logout() {
