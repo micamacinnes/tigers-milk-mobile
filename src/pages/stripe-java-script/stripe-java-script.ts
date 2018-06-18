@@ -27,7 +27,6 @@ export class StripeJavaScriptPage {
       
       this.charity = this.navParams.get('charity');
   }
- 
   ionViewDidLoad() {
     this.setupStripe();
 
@@ -90,6 +89,16 @@ export class StripeJavaScriptPage {
           var errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
         } else {
+          let source = result.source;
+          this.stripe.charges.create({
+            amount: 1000,
+            currency: "usd",
+            customer: "cus_AFGbOSiITuJVDs",
+            source,
+          }, function(err, charge) {
+            console.log(charge);
+          });
+
           console.log(result);
         }
       });
@@ -98,6 +107,42 @@ export class StripeJavaScriptPage {
 
 
  
+//   submittingPayment() {
+//     let loader = this.loadingCtrl.create({
+//         content: "Submitting payment...",
+//         duration: 500
+//     });
+//     loader.present();
+//     this.http
+//         .post("http://localhost:3000/donation", {
+//             user_id: this.user_id,
+//             amount: this.amount,
+//             charity_id: this.charity_id
+//         })
+//         .subscribe(
+//             result => {
+//                 console.log(result);
+//                 this.sendDonation();
+//             },
+//             error => {
+
+//                 console.log(error);
+//                 let toast = this.toastCtrl.create({
+//                     message: 'Error occured while processing payment.',
+//                     duration: 2000
+//                 });
+//                 toast.present();
+//             }
+//         );
+// }
+
+// sendDonation() {
+//     let toast = this.toastCtrl.create({
+//         message: 'Donation made!',
+//         duration: 3000
+//     });
+//     toast.present();
+// }
   confirmDonate() {
     const confirm = this.alertCtrl.create({
       title: 'Donation Confirmation',

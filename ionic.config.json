@@ -1,6 +1,6 @@
 {
   "name": "tigers-milk-mobile",
-  "app_id": "",
+  "app_id": "2c6bea15",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
