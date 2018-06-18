@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
+import { Charity } from '../../models/charity';
+import { Http } from '@angular/http';
  
 declare var Stripe;
  
@@ -9,12 +13,20 @@ declare var Stripe;
 })
 export class StripeJavaScriptPage {
  
+  public charity: Charity;
+  public amount: number;
+  public user_id: number;
+  public charity_id: number
   stripe = Stripe('pk_test_3SwPUqJIjakXCBIy3ytwG8st');
   card: any;
  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http, public toastCtrl: ToastController) {
+  
+
+  
+    this.charity = this.navParams.get("charity");
+
   }
- 
   ionViewDidLoad() {
     this.setupStripe();
   }
@@ -61,10 +73,56 @@ export class StripeJavaScriptPage {
           var errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
         } else {
+          let source = result.source;
+          this.stripe.charges.create({
+            amount: 1000,
+            currency: "usd",
+            customer: "cus_AFGbOSiITuJVDs",
+            source,
+          }, function(err, charge) {
+            console.log(charge);
+          });
+
           console.log(result);
         }
       });
     });
   }
  
+  submittingPayment() {
+    let loader = this.loadingCtrl.create({
+        content: "Submitting payment...",
+        duration: 500
+    });
+    loader.present();
+    this.http
+        .post("http://localhost:3000/donation", {
+            user_id: this.user_id,
+            amount: this.amount,
+            charity_id: this.charity_id
+        })
+        .subscribe(
+            result => {
+                console.log(result);
+                this.sendDonation();
+            },
+            error => {
+
+                console.log(error);
+                let toast = this.toastCtrl.create({
+                    message: 'Error occured while processing payment.',
+                    duration: 2000
+                });
+                toast.present();
+            }
+        );
+}
+
+sendDonation() {
+    let toast = this.toastCtrl.create({
+        message: 'Donation made!',
+        duration: 3000
+    });
+    toast.present();
+}
 }
