@@ -1,3 +1,4 @@
+import { MyCharity } from './myCharity';
 export class User {
     user_id: number;
     firstname: string;
@@ -5,4 +6,5 @@ export class User {
     email: string;
     password: string;
     totalDonated: number;
+    myCharities: Array<MyCharity> = [];
 }

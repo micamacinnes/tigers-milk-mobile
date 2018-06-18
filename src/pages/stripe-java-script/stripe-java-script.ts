@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
-import { Charity } from '../../models/charity';
+import { NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { CharityPage } from '../charity/charity';
+import { Charity } from '../../models/charityProfile';
+import { MyCharity } from '../../models/myCharity';
+import { User } from '../../models/user';
 import { Http } from '@angular/http';
- 
 declare var Stripe;
  
 @Component({
@@ -13,22 +13,38 @@ declare var Stripe;
 })
 export class StripeJavaScriptPage {
  
-  public charity: Charity;
-  public amount: number;
-  public user_id: number;
-  public charity_id: number
   stripe = Stripe('pk_test_3SwPUqJIjakXCBIy3ytwG8st');
   card: any;
- 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public http: Http, public toastCtrl: ToastController) {
-  
+  public charity: Charity = new Charity();
+  public user: User;
+  public amount: number;
+  private token: string;
 
-  
-    this.charity = this.navParams.get("charity");
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController, public toastCtrl: ToastController,private http: Http) {
+      var newDonation = new MyCharity();
+      newDonation.percentage += this.amount;
+      
+      this.charity = this.navParams.get('charity');
   }
   ionViewDidLoad() {
     this.setupStripe();
+
+    this.token = localStorage.getItem("TOKEN");
+    console.log("payment token", this.token)
+
+    this.http.get("http://localhost:3000/me?jwt=" + this.token)
+      .subscribe(
+        result => {
+          console.log(result);
+          this.user = result.json().user;
+          console.log(this.user);
+          // this.navCtrl.push(ProfilePage);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
  
   setupStripe(){
@@ -88,41 +104,102 @@ export class StripeJavaScriptPage {
       });
     });
   }
+
+
  
-  submittingPayment() {
-    let loader = this.loadingCtrl.create({
-        content: "Submitting payment...",
-        duration: 500
-    });
-    loader.present();
-    this.http
-        .post("http://localhost:3000/donation", {
-            user_id: this.user_id,
-            amount: this.amount,
-            charity_id: this.charity_id
-        })
-        .subscribe(
-            result => {
-                console.log(result);
-                this.sendDonation();
-            },
-            error => {
+//   submittingPayment() {
+//     let loader = this.loadingCtrl.create({
+//         content: "Submitting payment...",
+//         duration: 500
+//     });
+//     loader.present();
+//     this.http
+//         .post("http://localhost:3000/donation", {
+//             user_id: this.user_id,
+//             amount: this.amount,
+//             charity_id: this.charity_id
+//         })
+//         .subscribe(
+//             result => {
+//                 console.log(result);
+//                 this.sendDonation();
+//             },
+//             error => {
 
-                console.log(error);
-                let toast = this.toastCtrl.create({
-                    message: 'Error occured while processing payment.',
-                    duration: 2000
+//                 console.log(error);
+//                 let toast = this.toastCtrl.create({
+//                     message: 'Error occured while processing payment.',
+//                     duration: 2000
+//                 });
+//                 toast.present();
+//             }
+//         );
+// }
+
+// sendDonation() {
+//     let toast = this.toastCtrl.create({
+//         message: 'Donation made!',
+//         duration: 3000
+//     });
+//     toast.present();
+// }
+  confirmDonate() {
+    const confirm = this.alertCtrl.create({
+      title: 'Donation Confirmation',
+      message: 'Are you sure you want to donate $' + this.amount + '?',
+      // want to add charity info to the alert
+      // add amount donated
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Cancel clicked')
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Confirm clicked');
+
+            let loading = this.loadingCtrl.create({
+              spinner: 'dots',
+              content: 'Sending donation...',
+              duration: 3000
+            });
+          
+            loading.onDidDismiss(() => {
+              console.log('Dismissed loading');
+              let toast = this.toastCtrl.create({
+                message: 'You\'re donation has been sent.',
+                duration: 3000,
+                position: 'middle'
+              });
+  
+              toast.onDidDismiss(() => {
+                console.log('Dismissed toast');
+                this.navCtrl.push(CharityPage, {
+                  charity: this.charity,
                 });
-                toast.present();
-            }
-        );
+                
+              });
+  
+              toast.present();
+              this.user.totalDonated = this.amount;
+              console.log(this.user.totalDonated);
+              
+            });
+          
+            loading.present();
+            
+
+          }
+        },
+      ]
+    });
+    confirm.present();
+
+  }
+
+
 }
 
-sendDonation() {
-    let toast = this.toastCtrl.create({
-        message: 'Donation made!',
-        duration: 3000
-    });
-    toast.present();
-}
-}
