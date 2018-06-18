@@ -45,5 +45,9 @@ export class RegisterPage {
 
   }
 
+  cancel() {
+    this.navCtrl.popToRoot();
+  }
+
 
 }

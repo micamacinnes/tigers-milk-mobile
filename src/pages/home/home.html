@@ -3,42 +3,33 @@
 <ion-content padding style = "background-color:lightblue" >
 
   <div align="center"><h1 class = "name"> Tiger's Milk </h1> </div> 
-<p style = "text-align:center;"> <img src = " /assets/tiger.png" width = "200" height = "180"/><img src = " /assets/milk.png" width = "200" height = "180"/></p>
+  <ion-row>
+    <ion-col><img src = " /assets/tiger.png" /></ion-col>
+    <ion-col><img src = " /assets/milk.png"/></ion-col>
+    <!-- width = "200" height = "180" -->
+  </ion-row>
+ 
 
 <ion-list>
 <ion-item>
-  <ion-input type="email" [(ngModel)]="email" placeholder="email"></ion-input>
+  <ion-input type="email" [(ngModel)]="email" placeholder="Email"></ion-input>
 </ion-item>
 
 <ion-item>
-  <ion-input type="password" [(ngModel)]="password" placeholder="password"></ion-input>
+  <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
 </ion-item>
 </ion-list>
 
-<div align="center"> 
-<button ion-button (click)="login()">Login</button>
-<br><br><br><br><br><br>
-Don't have an account?
-<br>
-<button ion-button clear small (click)="navigateToRegister()">Sign up here</button>
+
+<button ion-button (click)="login()" class="key">Login</button>
+<br><br>
+
+<p>Don't have an account?</p>
+
+
+
+<div class="sign">
+    <button ion-button clear small (click)="navigateToRegister()" class="sign"><u>Sign Up</u></button>
 </div>
-<<<<<<< HEAD
 
-
-<br>
-<ion-item align="center"> <button ion-button (click)="navigateToportfolio()">Browse Portfolio</button>
-<ion-item align="center"> <button ion-button (click)="navigateTobrowse()">Browse Charities </button>
-<ion-item align="center"> <button ion-button (click)="navigateTopayment()">Donate Now!</button>
-</ion-item>
-=======
-<!-- <ion-item align="center"> <button ion-button (click)="navigateTopayment()">Donate Now!
-</button>
-</ion-item> -->
->>>>>>> 4a56c5c93ef3ecfcb7c6ce58c1140f886f051207
-
-<ion-item padding>
-  <button ion-button large full (click)="openJavaScript()">Donate Now!</button>
-  <!-- <button ion-button large full (click)="openNative()">Stripe Native</button> -->
-</ion-item>
-
-
+</ion-content>

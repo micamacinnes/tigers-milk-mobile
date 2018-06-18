@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, UrlSerializer, App, PopoverController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, UrlSerializer, App, PopoverController, ModalController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { HomePage } from '../home/home';
 import { ReactionsPage } from '../../pages/reactions/reactions';
+import { Http } from '@angular/http';
+import { MyCharity } from '../../models/myCharity';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 /**
  * Generated class for the ProfilePage page.
@@ -21,38 +24,55 @@ export class ProfilePage {
   // public firstname: string;
   // public lastname: string;
 
-  public user: User; 
+  public user: User;
   private token: string;
-    
-  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController, private app: App) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController, private app: App,
+    private http: Http, public modalCtrl: ModalController) {
     window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
     this.user = new User();
+
   }
 
-  showReactions(ev){
- 
+  showReactions(ev) {
     let reactions = this.popoverCtrl.create(ReactionsPage);
-
     reactions.present({
-        ev: ev
+      ev: ev
     });
+  }
 
-}
-
-like(){
+  like() {
     console.log("like");
-}
-
+  }
 
   ionViewDidLoad() {
-
     this.token = localStorage.getItem("TOKEN");
     console.log("profile token", this.token)
 
-    // ask how to get info from token
+    this.http.get("http://localhost:3000/me?jwt=" + this.token)
+      .subscribe(
+        result => {
+          console.log(result);
+          this.user = result.json().user;
+          console.log(this.user);
+          
+          // console.log(this.user.totalDonated);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
-  logout(){
+  navigateToEditProfileModal(){
+    let modal = this.modalCtrl.create(EditProfilePage, { token: this.token });
+    modal.present();
+    this.navCtrl.push(EditProfilePage, {
+      token: this.token,
+    });
+  }
+
+  logout() {
     this.app.getRootNav().setRoot(HomePage);
     this.navCtrl.popToRoot();
   }

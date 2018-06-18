@@ -6,7 +6,7 @@
     <ion-list>
         <br>
         <ion-item-group>
-            <ion-item-divider color="primary">Personal Information</ion-item-divider>
+            <ion-item-divider>Personal Information</ion-item-divider>
             <ion-item>
                 <ion-input type="text" placeholder="Firstname" [(ngModel)]="firstname"></ion-input>
             </ion-item>
@@ -24,7 +24,8 @@
     </ion-list>
 
     <div align="center">
-        <button ion-button (click)="register()" class="button">Register</button>
+        <button ion-button (click)="register()" class="key">Register</button>
+        <button ion-button clear small (click)="cancel()" class="cancel"><u>Cancel</u></button>
     </div>
 
 </ion-content>
