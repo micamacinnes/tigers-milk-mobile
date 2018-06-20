@@ -10,7 +10,8 @@
 
 
   <ion-card *ngFor="let charity of charities">
-    <img src="assets/rhino.jpg" />
+    <!-- <img src="assets/rhino.jpg" /> -->
+    <img src = {{charity.image}}  width="200" height="300" >
     <ion-card-content>
       <ion-card-title>
         {{ charity.name }}

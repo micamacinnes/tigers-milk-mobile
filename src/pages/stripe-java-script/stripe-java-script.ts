@@ -125,7 +125,6 @@ export class StripeJavaScriptPage {
 //                 this.sendDonation();
 //             },
 //             error => {
-
 //                 console.log(error);
 //                 let toast = this.toastCtrl.create({
 //                     message: 'Error occured while processing payment.',
@@ -135,7 +134,6 @@ export class StripeJavaScriptPage {
 //             }
 //         );
 // }
-
 // sendDonation() {
 //     let toast = this.toastCtrl.create({
 //         message: 'Donation made!',
@@ -202,4 +200,3 @@ export class StripeJavaScriptPage {
 
 
 }
-

@@ -6,6 +6,7 @@ import { ReactionsPage } from '../../pages/reactions/reactions';
 import { Http } from '@angular/http';
 import { MyCharity } from '../../models/myCharity';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { CharityPage } from '../charity/charity';
 
 /**
  * Generated class for the ProfilePage page.

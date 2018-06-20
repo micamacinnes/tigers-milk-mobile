@@ -6,6 +6,7 @@
 -->
 <ion-header >
   <ion-navbar color="main">
+      <!-- <div align="center"><h1 class = "name"> Tiger's Milk </h1> </div>  -->
     <ion-title class="headerTitle">{{this.user.firstname}}'s Profile</ion-title>
     <ion-buttons right>
         <button ion-button (click)="navigateToEditProfileModal()">Edit</button>
@@ -23,19 +24,12 @@
  </ion-row>
   
     <div class="header-image"></div>
+    <ion-navbar color="main">
+      <ion-title> Newsfeed </ion-title>
+    </ion-navbar>
  
     <div class="main-content">
-        <ion-segment [(ngModel)]="category">
-            <ion-segment-button value="gear">
-                Impact
-            </ion-segment-button>
-            <ion-segment-button value="clothing">
-                Initiatives
-            </ion-segment-button>
-            <ion-segment-button value="nutrition">
-                Social
-            </ion-segment-button>
-        </ion-segment>
+        
  
           <ion-item>
             <ion-avatar item-left>
@@ -44,8 +38,8 @@
             <h2>Save the Tigers</h2>
             <p>June 12, 2018</p>
           </ion-item>
- 
-          <img src="assets/rhino.jpg" />
+          <img src= "/assets/whitetiger.jpg" />
+          
  
           <ion-card-content>
             <p>

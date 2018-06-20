@@ -3,6 +3,15 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { BrowsePage } from '../browse/browse';
 import { PortfolioPage } from '../portfolio/portfolio';
+import { MyCharity } from '../../models/myCharity';
+import { Slice } from '../../models/slice';
+import { User } from '../../models/user';
+import { Charity } from '../../models/charityProfile';
+import { SlicePipe } from '@angular/common';
+import { Donation } from '../../models/donation';
+import { CharityPage } from '../charity/charity';
+
+
 /**
  * Generated class for the TabsPage tabs.
  *
@@ -22,6 +31,7 @@ export class TabsPage {
   portfolioRoot = PortfolioPage;
 
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController) {
+  }
 
 }
