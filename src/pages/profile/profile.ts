@@ -6,6 +6,7 @@ import { ReactionsPage } from '../../pages/reactions/reactions';
 import { Http } from '@angular/http';
 import { MyCharity } from '../../models/myCharity';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { Posts } from '../../models/posts';
 import { CharityPage } from '../charity/charity';
 
 /**
@@ -27,6 +28,8 @@ export class ProfilePage {
 
   public user: User;
   private token: string;
+  public postProperties: Array<object> = [];
+  public postNumber: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl: PopoverController, private app: App,
     private http: Http, public modalCtrl: ModalController) {
@@ -49,6 +52,8 @@ export class ProfilePage {
   ionViewDidLoad() {
     this.token = localStorage.getItem("TOKEN");
     console.log("profile token", this.token)
+
+    
 
     this.http.get("http://localhost:3000/me?jwt=" + this.token)
       .subscribe(

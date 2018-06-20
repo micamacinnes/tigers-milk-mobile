@@ -84,6 +84,27 @@
 </ion-row>
     </div>
 
+
+    <ion-list>
+      <ion-card *ngFor="let post of postProperties">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="post.charityLogo">
+          </ion-avatar>
+          <h2>{{post.charityName}}</h2>
+        </ion-item>
+        <ion-item>
+          <h4 text-wrap>{{post.text}}</h4>
+          <img [src]="post.img">
+          <p>{{post.date}}</p>
+        </ion-item>
+        </ion-card>
+    </ion-list>
+    
     <button ion-button (click)="logout()" class="key">Logout</button>
- 
+  
+
+     
+      
+      
 </ion-content>
