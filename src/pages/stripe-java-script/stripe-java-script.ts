@@ -13,42 +13,37 @@ declare var Stripe;
 })
 export class StripeJavaScriptPage {
 
-  stripe = Stripe('pk_test_3SwPUqJIjakXCBIy3ytwG8st');
+  stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
   card: any;
-  public charity: Charity;
-  public user: User;
-  public amount: number;
-  private token: string;
-  public user_id: number;
-  public charity_id: number;
+  name: string;
+  amount: number;
+  curency: string;
+
+  oneTime: boolean;
+  monthly: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController, public toastCtrl: ToastController, private http: Http) {
-    var newDonation = new MyCharity();
-    newDonation.percentage += this.amount;
+    // var newDonation = new MyCharity();
+    // newDonation.percentage += this.amount;
 
-    this.charity = this.navParams.get('charity');
-    this.charity = new Charity;
-    this.user = new User();
+    // this.charity = this.navParams.get('charity');
+    // this.charity = new Charity;
+    // this.user = new User();
   }
   ionViewDidLoad() {
     this.setupStripe();
+  }
+  // chose one-time payment
+  oneTimeTrue() {
+    this.oneTime = true;
+    this.monthly = false;
+  }
 
-    this.token = localStorage.getItem("TOKEN");
-    console.log("payment token", this.token)
-
-    this.http.get("http://localhost:3000/me?jwt=" + this.token)
-      .subscribe(
-        result => {
-          console.log(result);
-          this.user = result.json().user;
-          console.log(this.user);
-          // this.navCtrl.push(ProfilePage);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+  // chose monthly payment
+  monthlyTrue() {
+    this.oneTime = false;
+    this.monthly = true;
   }
 
   setupStripe() {
@@ -56,7 +51,6 @@ export class StripeJavaScriptPage {
     var style = {
       base: {
         color: '#32325d',
-        lineHeight: '24px',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
         fontSize: '16px',
@@ -86,67 +80,114 @@ export class StripeJavaScriptPage {
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', event => {
       event.preventDefault();
+      if (this.oneTime) {
+        this.stripe.createToken(this.card)
+          .then(result => {
+            if (result.error) {
+              var errorElement = document.getElementById('card-errors');
+              errorElement.textContent = result.error.message;
+            } else {
+              console.log(result.token);
+              this.stripeTokenHandler(result.token);
+              // this.navCtrl.setRoot(PortfolioPage);
+              this.sendDonation();
+            }
+          })
+      } else {
+        this.stripe.createSource(this.card)
+          .then(result => {
+            if (result.error) {
+              var errorElement = document.getElementById('card-errors');
+              errorElement.textContent = result.error.message;
+            } else {
 
-      // this.stripe.createToken(this.card)
-      this.stripe.createSource(this.card).then(result => {
-        if (result.error) {
-          var errorElement = document.getElementById('card-errors');
-          errorElement.textContent = result.error.message;
-        } else {
-          let source = result.source;
-          this.stripe.charges.create({
-            amount: 1000,
-            currency: "usd",
-            customer: "cus_AFGbOSiITuJVDs",
-            source,
-          }, function (err, charge) {
-            console.log(charge);
+              this.stripeSourceHandler(result.source);
+              // this.navCtrl.setRoot(PortfolioPage);
+              this.sendDonation();
+            }
           });
-
-          console.log(result);
-        }
-      });
+      }
     });
   }
 
-
-
-  submittingPayment() {
-    let loader = this.loadingCtrl.create({
-      content: "Sending Donation...",
-      duration: 500
-    });
-    loader.present();
+  stripeTokenHandler(token) {
     this.http
-      .post("http://localhost:3000/donation", {
-        user_id: this.user_id,
+      .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
+        cardholder: this.name,
+        paymenttoken: token.id,
         amount: this.amount,
-        charity_id: this.charity,
+        curency: this.curency,
+        date: new Date().toDateString(),
+        // time: new Date().toTimeString()
       })
+
       .subscribe(
         result => {
           console.log(result);
-          this.sendDonation();
         },
-        error => {
 
+        error => {
           console.log(error);
-          let toast = this.toastCtrl.create({
-            message: 'Error occured while processing payment.',
-            duration: 2000
-          });
-          toast.present();
-        }
-      );
+        });
   }
+
+  stripeSourceHandler(source) {
+    this.http
+      .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
+        cardholder: this.name,
+        paymenttoken: source.id,
+        amount: this.amount,
+        curency: this.curency,
+        date: new Date().toDateString(),
+      })
+
+      .subscribe(
+        result => {
+          console.log(result);
+        },
+
+        error => {
+          console.log(error);
+        });
+  }
+
 
   sendDonation() {
     let toast = this.toastCtrl.create({
-      message: 'Donation made!',
+      message: 'Donation Successful!',
       duration: 3000
     });
+    console.log('Donate clicked');
     toast.present();
   }
+
+  // createDonation() {
+  //   this.http.post("http://localhost:3000/createDonation?charityId="+ this.charity + "&jwt=" + localStorage.getItem("Token"),{
+  //      amount: this.amount,
+  //      date: "15 May",
+  //   })
+       
+  //      .subscribe(
+  //       result => {
+  //         console.log(result);
+          
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       }
+  //     );
+  //   };
+  // }
+}
+
+
+
+
+
+
+
+
+
   // confirmDonate() {
   //   const confirm = this.alertCtrl.create({
   //     title: 'Donation Confirmation',
@@ -203,7 +244,14 @@ export class StripeJavaScriptPage {
   //   confirm.present();
 
   // }
+  // showAlert() {
+  //   const alert = this.alertCtrl.create({
+  //     title: 'Donation Successful!',
+  //     subTitle: 'Thank you for your support!',
+  //     buttons: ['OK']
+  //   });
+  //   alert.present();
+  // }
 
 
-}
 
