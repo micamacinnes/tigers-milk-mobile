@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, List } from 'ionic-angular';
 import { CharityPage } from '../charity/charity';
 import { Charity } from '../../models/charityProfile';
 import { User } from '../../models/user';
@@ -22,7 +22,9 @@ export class BrowsePage {
 
   public charities: Array<Charity> = [];
   public user: User = new User();
+  public charity: any;
 
+  @ViewChild('scheduleList', {read: List}) charityList: List;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.user = this.navParams.get("user");
