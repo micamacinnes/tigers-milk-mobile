@@ -13,7 +13,7 @@ declare var Stripe;
 })
 export class StripeJavaScriptPage {
 
-  stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
+  stripe = Stripe('pk_test_yYYEc7jOM9MuZfDB6jUrdckR');
   card: any;
   name: string;
   amount: number;
