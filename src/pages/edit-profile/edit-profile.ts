@@ -16,7 +16,13 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
-  public user: User;
+  
+  user_info: Array<User> = [];
+  public user: User = new User();
+  public firstname: string;
+  public lastname: string;
+  public email: string;
+  public password: string;
   private token: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 

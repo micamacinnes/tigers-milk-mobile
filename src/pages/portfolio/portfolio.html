@@ -12,11 +12,11 @@
     <canvas align="center" #pieChart></canvas>
   </section>
 
-  <button ion-button full clear small (click)="update()">
+  <button ion-button full clear small (click)="createPieChart(this.amountArr, this.charityArr)">
       Update Chart
   </button>
 
-  <h4>Account Plan</h4>
+  <!-- <h4>Account Plan</h4>
     <p>
         Your current monthly payment is
         <b>${{monthly}}</b> every month.
@@ -28,7 +28,7 @@
                 <ion-label range-right>$500</ion-label>
             </ion-range>
         </ion-item>
-    </ion-list>
+    </ion-list> -->
   
   <!-- <ion-list>
     <ion-item>
@@ -55,14 +55,36 @@
   </ion-list> -->
 
 
-  <ion-item-divider color="dark">Donation History</ion-item-divider>
+  <!-- <ion-item-divider color="dark">Donation History</ion-item-divider>
   <ion-item>
     $40 to Domestic Animal Rescue Group </ion-item>
   <ion-item>
     $100 to Tiger Haven </ion-item>
     <ion-item>
-    $160 to Rhino Rescue Project </ion-item>
+    $160 to Rhino Rescue Project </ion-item> -->
 
+    <!-- <div>
+        Donation History
+      </div>
+      <div>
+        <ion-list *ngFor="let donation of donations">
+          <ion-item>
+            <ion-row>
+              <ion-col class="amount">
+                {{donation.amount}}
+              </ion-col>
+              <ion-col text-wrap>
+                {{donation.charityName}}
+              </ion-col>
+              <ion-col text-wrap class="date">
+                {{donation.date}}
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </div>
+      
+    </div> -->
 
 
 </ion-content>

@@ -22,26 +22,31 @@ export class StripeJavaScriptPage {
   oneTime: boolean;
   monthly: boolean;
 
+  charityDetail: number;
+  date: Date;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController, public toastCtrl: ToastController, private http: Http) {
-    // var newDonation = new MyCharity();
-    // newDonation.percentage += this.amount;
-
-    // this.charity = this.navParams.get('charity');
-    // this.charity = new Charity;
-    // this.user = new User();
+    this.charityDetail = this.navParams.get("charity");
   }
+
+  ionViewWillEnter(){
+    if (this.card) {
+      this.card.clear();
+    }
+  }
+
   ionViewDidLoad() {
     this.setupStripe();
   }
   // chose one-time payment
-  oneTimeTrue() {
+  oneTimePay() {
     this.oneTime = true;
     this.monthly = false;
   }
 
   // chose monthly payment
-  monthlyTrue() {
+  monthlyPay() {
     this.oneTime = false;
     this.monthly = true;
   }
@@ -151,6 +156,22 @@ export class StripeJavaScriptPage {
         });
   }
 
+  amountToDonations() {
+    this.http
+      .post("http://localhost:3000/donations?jwt=" + localStorage.getItem("Token"), {
+        amount: this.amount
+      })
+
+      .subscribe(
+        result => {
+          console.log(result);
+        },
+
+        error => {
+          console.log(error);
+        });
+  }
+
 
   sendDonation() {
     let toast = this.toastCtrl.create({
@@ -161,23 +182,24 @@ export class StripeJavaScriptPage {
     toast.present();
   }
 
-  // createDonation() {
-  //   this.http.post("http://localhost:3000/createDonation?charityId="+ this.charity + "&jwt=" + localStorage.getItem("Token"),{
-  //      amount: this.amount,
-  //      date: "15 May",
-  //   })
-       
-  //      .subscribe(
-  //       result => {
-  //         console.log(result);
-          
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       }
-  //     );
-  //   };
-  // }
+    //create a donation
+    createDonation() {
+      this.http.post("http://localhost:3000/createDonation?charityId=" + this.charityDetail + "&jwt=" + localStorage.getItem("Token"), {
+        amount: this.amount,
+        date: "2 Oct",
+      })
+  
+        .subscribe(
+          result => {
+            console.log(result);
+  
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    };
+  
 }
 
 
@@ -243,15 +265,6 @@ export class StripeJavaScriptPage {
   //   });
   //   confirm.present();
 
-  // }
-  // showAlert() {
-  //   const alert = this.alertCtrl.create({
-  //     title: 'Donation Successful!',
-  //     subTitle: 'Thank you for your support!',
-  //     buttons: ['OK']
-  //   });
-  //   alert.present();
-  // }
 
 
 
