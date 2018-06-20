@@ -13,12 +13,14 @@ export class RegisterPage {
   public password: string;
   public firstname: string;
   public lastname: string;
+  public passwordCheck: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
 
   }
 
   register() {
+    if(this.password == this.passwordCheck) {
     this.http.post("http://localhost:3000/registration", {
       email: this.email,
       firstname: this.firstname,
@@ -42,12 +44,11 @@ export class RegisterPage {
           console.log(error);
         }
       );
-
+    }
+  console.log('Passwords do not match');
   }
 
   cancel() {
     this.navCtrl.popToRoot();
   }
-
-
 }

@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, List, AlertController } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
-<<<<<<< HEAD
-import { PaymentPage } from '../payment/payment';
-import { User } from '../../models/user';
-import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
-=======
 // import { PaymentPage } from '../payment/payment';
 import { User } from '../../models/user';
 import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
+// import { ProfilePage } from '../profile/profile';
+import { Http } from '@angular/http';
 
->>>>>>> 2249c40e6cba40b59233c92981d160793bfebb6d
 /**
  * Generated class for the CharityPage page.
  *
@@ -26,13 +22,94 @@ import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
 export class CharityPage {
   
   public user: User = new User();
-  public charity: Charity = new Charity();
+  public charity: Charity = new Charity()
+  
+  public charities: Array<Object> = [];
+
+  public favouriteCharity: any;
+  public buttonColor: string = 'primary';;
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public http: Http,    public alertCtrl: AlertController) {
       this.charity = this.navParams.get("charity");
       this.user = this.navParams.get("user");
     }
+
+
+  //   getCharities() {
+  //     this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
+  //       })
+  //       .subscribe(
+  //         result => {
+  //           this.charities = result.json();
+  //         },
+  //         error => {
+  //           console.log(error);
+  //         }
+  //       );
+  //     };
+
+  //     allCharities(){
+  //       this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
+  //       })
+  //       .subscribe(
+  //         result => {
+  //           this.charities = result.json();
+  //         },
+  //         error => {
+  //           console.log(error);
+  //         }
+  //       );
+  //     }
+
+
+
+  //     addToFavourite(charityid:number){
+
+  //       //change button color 
+  //      // if(this.buttonColor == 'primary'){
+  //      //   this.buttonColor = 'clear' 
+  //      //   }else{
+  //      //   this.buttonColor = 'primary'
+  //      //   }
+       
+  //      //show alert
+  //      let alert = this.alertCtrl.create({
+  //        title: 'Favorite Added',
+  //        buttons: [{
+  //          text: 'OK',
+  //        }]
+  //      });
+  //      // now present the alert on top of all other content
+  //      //
+  //      alert.present();
+
+  //     this.http.post("http://localhost:3000/favourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
+
+  //     })
+  //     .subscribe(
+  //      result => {
+  //        console.log(result);
+  //         // create an alert instance
+  //      },
+  //      error => {
+  //        console.log(error);
+  //      }
+  //    );
+  //  };
+
+  //     favouriteCharities(){
+  //       this.http.get("http://localhost:3000/favourite?jwt=" + localStorage.getItem("Token"), {
+  //       })
+  //       .subscribe(
+  //         result => {
+  //           this.charities = result.json();
+  //         },
+  //         error => {
+  //           console.log(error);
+  //         }
+  //       );
+  //     }
 
   navigateToCharity(item) {
     this.navCtrl.push(CharityPage, {
