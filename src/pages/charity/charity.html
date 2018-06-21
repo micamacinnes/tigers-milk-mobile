@@ -5,6 +5,7 @@
 -->
 <ion-header>
 
+<<<<<<< HEAD
   <ion-navbar color="main">
       <ion-buttons end>
           <button ion-button icon-only (click)="presentToast()">
@@ -77,6 +78,81 @@
   <div class="donate">
       <button ion-button (click)="navigateToPayment(charity.id)" class="key">Donate Now!</button>
   </div>
+=======
+    <ion-navbar color="main">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="presentToast()">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-buttons>
+      <ion-title>Details</ion-title>
+    </ion-navbar>
   
-
-</ion-content>
+  </ion-header>
+  <ion-content padding>
+      <img src= {{charity?.img}} />
+    <h1 class="charity">{{charity?.name}}</h1>
+  
+  
+      <div class="line"></div>
+      <h4 class="headings">Our Mission</h4>
+      <!-- <p>{{charity.slogan}}</p> -->
+>>>>>>> updateProfile
+  
+      <div class="line"></div>
+  
+      <h4 class="headings">What We Do</h4>
+      <p>{{charity?.about}}</p>
+  
+      <div class="line"></div>
+  
+      <h4 class="headings">Contact Us</h4>
+      <!-- <ion-row>
+          <ion-col>
+              <button ion-fab mini><ion-icon name="md-person" class="fab"></ion-icon> </button>
+          </ion-col>
+          <ion-col>
+              <button ion-fab mini><ion-icon name="logo-facebook" class="fab"></ion-icon></button>
+          </ion-col>
+          <ion-col>
+              <button ion-fab mini><ion-icon name="logo-twitter" class="fab"></ion-icon></button>
+          </ion-col>
+        </ion-row> -->
+        <!--The fab button-->
+      <ion-fab right bottom>
+        <button ion-fab mini color="main">
+            <ion-icon name="md-share" color="light"></ion-icon>
+        </button>
+        <ion-fab-list side="left" color="main">
+            <button ion-fab color="main">
+                <ion-icon name="logo-facebook" color="light"></ion-icon>
+            </button>
+            <button ion-fab color="main">
+                <ion-icon name="logo-twitter" color="light"></ion-icon>
+            </button>
+            <button ion-fab color="main">
+                <ion-icon name="logo-vimeo" color="light"></ion-icon>
+            </button>
+            <button ion-fab color="main">
+                <ion-icon name="logo-googleplus" color="light"></ion-icon>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
+        <div class="line"></div>
+    <!-- <ion-item-divider ><font size="4">Our Mission</font></ion-item-divider>
+      <font size="5"><p padding-right="10" padding-left="10">{{charity.slogan}}</p></font><hr>
+      <ion-item-divider ><font size="3">What we do</font></ion-item-divider>
+      <font size="4"><p padding-right="10" padding-left="10">{{charity.about}}</p></font><hr>
+      <ion-item-divider ><font size="4">Total Donated to {{charity.name}}</font></ion-item-divider>
+      <font size="5"><p padding-right="10" padding-left="10">$1,000</p></font><hr>
+      <ion-item-divider ><font size="4">Contact Us</font></ion-item-divider> -->
+  
+  
+  
+    <div class="donate">
+        <button ion-button (click)="navigateToPayment(charity.id)" class="key">Donate Now!</button>
+    </div>
+    
+  
+  </ion-content>
+  

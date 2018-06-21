@@ -11,6 +11,9 @@
       <button ion-button clear (click)="dismiss()">Cancel</button>
     </ion-buttons>
     <ion-title>Edit Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button clear >Save</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -22,27 +25,23 @@
     </ion-list-header>
 
     <ion-item>
-      <!-- <ion-label stacked>First Name</ion-label> -->
-      <h3>Full Name</h3>
-      <p>{{this.user.firstname}} {{this.user.lastname}}</p>
-      <!-- {{this.user.firstname}} -->
+      <ion-label fixed> First Name</ion-label>
+      <ion-input type="text" value="{{this.user.firstname}}">{{this.user.firstname}}</ion-input>
     </ion-item>
-
-    <!-- <ion-item> -->
-      <!-- <ion-label stacked>Last Name</ion-label> -->
-      <!-- <h2>Last </h2>
-      <p>{{this.user.lastname}}</p> -->
-      <!-- {{this.user.lastname}} -->
-    <!-- </ion-item> -->
 
     <ion-item>
-      <h3>Email</h3>
-      <p>{{this.user.email}}</p>
-      <!-- {{this.user.email}} -->
+      <ion-label fixed> Last Name</ion-label>
+      <ion-input type="text" value="{{this.user.lastname}}">{{this.user.lastname}}</ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label fixed> Email</ion-label>
+      <ion-input type="text" value="{{this.user.email}}">{{this.user.email}}</ion-input>
+    </ion-item>
+
 
   </ion-list>
 
 
-  <button ion-button class="key" (click)="saveProfileInfo">Save</button>
+  <!-- <button ion-button class="key" (click)="saveProfileInfo">Save</button> -->
 </ion-content>

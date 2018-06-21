@@ -82,6 +82,7 @@ export class CharityPage {
   //   toast.present();
   //   console.log('added to feed')
   // }
-
   
 }
+
+  

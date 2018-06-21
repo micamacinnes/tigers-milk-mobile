@@ -39,12 +39,22 @@ export class PortfolioPage {
 
     // let colorArr: Array<string> = ["rgb(128,0,0)", "rgb(220,20,60)", "rgb(255,0,0)", "rgb(255,127,80)", "rgb(205,92,92)", "rgb(255,165,0)", "rgb(255,215,0)", "rgb(128,128,0)", "rgb(154,205,50)", "rgb(85,107,47)", "rgb(124,252,0)", "rgb(144,238,144)", "rgb(143,188,143)", "rgb(47,79,79)", "rgb(0,139,139)", "rgb(0,255,255)", "rgb(224,255,255)", "rgb(70,130,180)", "rgb(30,144,255)", "rgb(25,25,112)"];
 
-
     // let newSlice = new Slice();
     // newSlice.technology = "Domestic Animal Rescue Group";
     // newSlice.time = 40;
     // newSlice.color = colorArr[1];
     // this.technologies.push(newSlice);
+    // let newSlice1 = new Slice();
+    // newSlice1.technology = "Tiger Haven";
+    // newSlice1.time = 100;
+    // newSlice1.color = colorArr[2];
+    // this.technologies.push(newSlice1);
+    // let newSlice2 = new Slice();
+    // newSlice2.technology = "Rhino Rescuse Project";
+    // newSlice2.time = 160;
+    // newSlice2.color = colorArr[5];
+    // this.technologies.push(newSlice2);
+  }
 
     // let newSlice1 = new Slice();
     // newSlice1.technology = "Tiger Haven";
@@ -58,9 +68,7 @@ export class PortfolioPage {
     // newSlice2.color = colorArr[5];
     // this.technologies.push(newSlice2);
 
-  }
-
-
+  
 
   public pieChartEl: any;
   public chartLabels: any = [];
@@ -78,7 +86,6 @@ export class PortfolioPage {
   // update() {
   //   this.navCtrl.setRoot(this.navCtrl.getActive().component);
   // }
-
 
   showDonations() {
     this.http.get("http://localhost:3000/donations?jwt=" + localStorage.getItem("Token"), {

@@ -227,13 +227,11 @@ export class StripeJavaScriptPage {
   //         text: 'Confirm',
   //         handler: () => {
   //           console.log('Confirm clicked');
-
   //           let loading = this.loadingCtrl.create({
   //             spinner: 'dots',
   //             content: 'Sending donation...',
   //             duration: 3000
   //           });
-
   //           loading.onDidDismiss(() => {
   //             console.log('Dismissed loading');
   //             let toast = this.toastCtrl.create({
@@ -241,30 +239,20 @@ export class StripeJavaScriptPage {
   //               duration: 3000,
   //               position: 'middle'
   //             });
-
   //             toast.onDidDismiss(() => {
   //               console.log('Dismissed toast');
   //               this.navCtrl.push(CharityPage, {
   //                 charity: this.charity,
   //               });
-
   //             });
-
   //             toast.present();
   //             this.user.totalDonated = this.amount;
   //             console.log(this.user.totalDonated);
-
   //           });
-
   //           loading.present();
-
 
   //         }
   //       },
   //     ]
   //   });
   //   confirm.present();
-
-
-
-
