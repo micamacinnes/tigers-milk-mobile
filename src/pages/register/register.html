@@ -1,7 +1,9 @@
-<ion-content padding style = "background-color:lightblue" >
+<ion-content padding style="background-color:lightblue">
     <div align="center">
 
-        <div align="center"><h1 class = "name"> Register </h1> </div> 
+        <div align="center">
+            <h1 class="name"> Register </h1>
+        </div>
     </div>
     <ion-list>
         <br>
@@ -19,13 +21,18 @@
             <ion-item>
                 <ion-input type="password" placeholder="Enter a password" [(ngModel)]="password"></ion-input>
             </ion-item>
-           
+            <ion-item>
+                <ion-input type="text" placeholder="Confirm Password" [(ngModel)]="passwordCheck" type="Password"></ion-input>
+            </ion-item>
+
         </ion-item-group>
     </ion-list>
 
     <div align="center">
         <button ion-button (click)="register()" class="key">Register</button>
-        <button ion-button clear small (click)="cancel()" class="cancel"><u>Cancel</u></button>
+        <button ion-button clear small (click)="cancel()" class="cancel">
+            <u>Cancel</u>
+        </button>
     </div>
 
 </ion-content>

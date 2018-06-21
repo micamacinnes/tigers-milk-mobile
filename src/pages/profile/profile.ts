@@ -67,9 +67,9 @@ export class ProfilePage {
   navigateToEditProfileModal(){
     let modal = this.modalCtrl.create(EditProfilePage, { token: this.token });
     modal.present();
-    this.navCtrl.push(EditProfilePage, {
-      token: this.token,
-    });
+    // this.navCtrl.push(EditProfilePage, {
+    //   token: this.token,}
+    // );
   }
 
   logout() {

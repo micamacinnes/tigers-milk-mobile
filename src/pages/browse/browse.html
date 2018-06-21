@@ -1,38 +1,39 @@
 <ion-header>
 
-  <ion-navbar color="main">
-    <ion-title>Charities</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-<ion-content padding>
-
-
-  <ion-card *ngFor="let charity of charities">
-    <img src="assets/rhino.jpg" />
-    <ion-card-content>
-      <ion-card-title>
-        {{ charity.name }}
-      </ion-card-title>
-      <p>{{charity.slogan}}</p>
-    </ion-card-content>
-    <ion-row no-padding>
-      <!-- <ion-col>
-        <button ion-button clear small (click)="doAlert()" ><ion-icon name="star"></ion-icon>
-          Favorite 
-        </button>
-      </ion-col> -->
-      <ion-col text-right>
-        <button ion-button class="key" (click)="navigateToCharity(charity)">
-            <!-- clear small color="danger" icon-start
-          <ion-icon name='share-alt'></ion-icon> -->
-          Details
-        </button>
-
-      </ion-col>
-    </ion-row>
-  </ion-card>
-  <br>
-
-</ion-content>
+    <ion-navbar color="main">
+      <ion-title>Charities</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+  
+  
+    <ion-card *ngFor="let charity of charities">
+      <!-- <img src="assets/rhino.jpg" /> -->
+      <img src = {{charity.img}}  width="200" height="300" >
+      <ion-card-content>
+        <ion-card-title>
+          {{ charity.name }}
+        </ion-card-title>
+        <!-- <p>{{charity.}}</p> -->
+      </ion-card-content>
+      <ion-row no-padding>
+        <!-- <ion-col>
+          <button ion-button clear small (click)="doAlert()" ><ion-icon name="star"></ion-icon>
+            Favorite 
+          </button>
+        </ion-col> -->
+        <ion-col text-right>
+          <button ion-button class="key" (click)="navigateToCharity(charity.id)">
+              <!-- clear small color="danger" icon-start
+            <ion-icon name='share-alt'></ion-icon> -->
+            Details
+          </button>
+  
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <br>
+  
+  

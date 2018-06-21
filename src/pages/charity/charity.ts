@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, List, AlertController } from 'ionic-angular';
 import { MyCharity } from '../../models/myCharity';
 import { Charity } from '../../models/charityProfile';
 // import { PaymentPage } from '../payment/payment';
 import { User } from '../../models/user';
 import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
+// import { ProfilePage } from '../profile/profile';
+import { Http } from '@angular/http';
 
 /**
  * Generated class for the CharityPage page.
@@ -19,60 +21,68 @@ import { StripeJavaScriptPage} from '../stripe-java-script/stripe-java-script';
 })
 export class CharityPage {
   
-  public user: User = new User();
-  public charity: Charity = new Charity();
+  public charity: any;
+  public charityDetail: any;
+
+  public favouriteCharity: any;
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
-      this.charity = this.navParams.get("charity");
-      this.user = this.navParams.get("user");
+
+    constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public http: Http,    public alertCtrl: AlertController) {
+      this.charityDetail = this.navParams.get("charityDetail");
     }
 
-  navigateToCharity(item) {
-    this.navCtrl.push(CharityPage, {
-      charity: this.charity,
-      user: this.user
 
-    });
+  
+
+  getDetails(charityID: number) {
+    this.http.get("http://localhost:3000/charity/" + charityID, {
+      })
+      .subscribe(
+        result => {
+          this.charity = result.json();         
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
-
-  // ionViewDidLoad() {
-  //   this.user = this.navParams.get("user");
-  //   this.charity = this.navParams.get("charity");
-  // }
+  ionViewDidLoad() {
+    this.getDetails(this.charityDetail);
+  }
  
   
 
-  navigateToPayment() {
+  navigateToPayment(id: number) {
     this.navCtrl.push(StripeJavaScriptPage, {
-      charity: this.charity,
-      user: this.user
+      
     });
   }
 
-  navigateToBrowse(charity: Charity) {
-    this.navCtrl.push(CharityPage, {
-      charity: charity,
-      user: this.user
-    });
-  }
+  // navigateToBrowse(charity: Charity) {
+  //   this.navCtrl.push(CharityPage, {
+  //     charity: charity,
+  //     user: this.user
+  //   });
+  // }
   
-  presentToast() {
-    let charity: Charity = this.charity;
-    let toast = this.toastCtrl.create({
-      message: 'Added to NewsFeed',
-      duration: 2000,
-      position: 'top'
-    });
+  // presentToast() {
+  //   let charity: Charity = this.charity;
+  //   let toast = this.toastCtrl.create({
+  //     message: 'Added to NewsFeed',
+  //     duration: 2000,
+  //     position: 'top'
+  //   });
   
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
+  //   toast.onDidDismiss(() => {
+  //     console.log('Dismissed toast');
+  //   });
   
-    toast.present();
-    console.log('added to feed')
-  }
-
+  //   toast.present();
+  //   console.log('added to feed')
+  // }
   
 }
+
+  

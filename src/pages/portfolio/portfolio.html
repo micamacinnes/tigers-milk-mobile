@@ -1,43 +1,91 @@
-<ion-header>
 
+<ion-header>
     <ion-navbar color="main">
-      <ion-title>Portfolio</ion-title>
+      <ion-title>
+        Portfolio
+      </ion-title>
     </ion-navbar>
-  
   </ion-header>
   
   <ion-content padding>
   
-      <section class="chart-wrapper">
-        <canvas align="center" #pieChart></canvas>
-      </section>
-    
-      <button ion-button full clear small (click)="update()">
-          Update Chart
-      </button>
-      
+    <section class="chart-wrapper">
+      <canvas align="center" #pieChart></canvas>
+    </section>
+  
+    <button ion-button full clear small (click)="createPieChart(this.amountArr, this.charityArr)">
+        Update Chart
+    </button>
+  
+    <!-- <h4>Account Plan</h4>
+      <p>
+          Your current monthly payment is
+          <b>${{monthly}}</b> every month.
+      </p>
       <ion-list>
-        <ion-item>
-            Total Monthly Donation Amount:
-        </ion-item>
-        <ion-item>
-            <ion-label fixed>$</ion-label>
-            <ion-input type="text" [(ngModel)]="total"></ion-input>
-        </ion-item>
-        <ion-item *ngFor="let myCharity of user.myCharities">
-          <ion-list no-lines>
-            {{myCharity.name}}
-            <ion-item>
-                  <div align="right"><ion-badge>{{myCharity.percentage}}% of Total Monthly Donations</ion-badge></div>
-            </ion-item>
-            <ion-item>
-              <ion-range min="0" max="100" step="5" snaps="true" [(ngModel)]="myCharity.percentage" color="danger">
-                <ion-icon range-left small color="danger" name="heart"></ion-icon>
-                <ion-icon range-right color="danger" name="heart"></ion-icon>
+          <ion-item>
+              <ion-range min="0" max="500" step="50" snaps="true" pin="true" [(ngModel)]="monthly">
+                  <ion-label range-left>$0</ion-label>
+                  <ion-label range-right>$500</ion-label>
               </ion-range>
+          </ion-item>
+      </ion-list> -->
+    
+    <!-- <ion-list>
+      <ion-item>
+          Donation History
+      </ion-item>
+      <ion-item>
+          <ion-label fixed>$</ion-label>
+          <ion-input type="text" [(ngModel)]="total"></ion-input>
+      </ion-item>
+      <ion-item *ngFor="let myCharity of user.myCharities">
+        <ion-list no-lines>
+          {{myCharity.name}}
+          <ion-item>
+                <div align="right"><ion-badge>{{myCharity.percentage}}% of Total Monthly Donations</ion-badge></div>
+          </ion-item>
+          <ion-item>
+            <ion-range min="0" max="100" step="5" snaps="true" [(ngModel)]="myCharity.percentage" color="danger">
+              <ion-icon range-left small color="danger" name="heart"></ion-icon>
+              <ion-icon range-right color="danger" name="heart"></ion-icon>
+            </ion-range>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+    </ion-list> -->
+  
+  
+    <!-- <ion-item-divider color="dark">Donation History</ion-item-divider>
+    <ion-item>
+      $40 to Domestic Animal Rescue Group </ion-item>
+    <ion-item>
+      $100 to Tiger Haven </ion-item>
+      <ion-item>
+      $160 to Rhino Rescue Project </ion-item> -->
+  
+      <div>
+          Donation History
+        </div>
+        <div>
+          <ion-list *ngFor="let donation of donations">
+            <ion-item>
+              <ion-row>
+                <ion-col class="amount">
+                  {{donation.amount}}
+                </ion-col>
+                <ion-col text-wrap>
+                  {{donation.charityName}}
+                </ion-col>
+                <ion-col text-wrap class="date">
+                  {{donation.date}}
+                </ion-col>
+              </ion-row>
             </ion-item>
           </ion-list>
-        </ion-item>
-      </ion-list>
-    
-    </ion-content>
+        </div>
+        
+      </div>
+  
+  
+  </ion-content>
