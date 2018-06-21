@@ -31,19 +31,12 @@ export class PortfolioPage {
   public charityArr: Array<string> = [];
   public amountArr: Array<number> = [];
 
-  showSelected1: boolean;
-  first1: boolean;
-  first2: boolean;
-  showSelected2: boolean;
+ 
 
   @ViewChild('pieChart') pieChart;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
 
-    this.showSelected1 = false;
-    this.first1 = true;
-    this.showSelected2 = false;
-    this.first2 = true;
     // let colorArr: Array<string> = ["rgb(128,0,0)", "rgb(220,20,60)", "rgb(255,0,0)", "rgb(255,127,80)", "rgb(205,92,92)", "rgb(255,165,0)", "rgb(255,215,0)", "rgb(128,128,0)", "rgb(154,205,50)", "rgb(85,107,47)", "rgb(124,252,0)", "rgb(144,238,144)", "rgb(143,188,143)", "rgb(47,79,79)", "rgb(0,139,139)", "rgb(0,255,255)", "rgb(224,255,255)", "rgb(70,130,180)", "rgb(30,144,255)", "rgb(25,25,112)"];
 
 
@@ -78,15 +71,13 @@ export class PortfolioPage {
 
   ionViewDidLoad() {
     // this.defineChartData();
-    this.createPieChart();
     this.showDonations();
     this.getDonationAmount();
   }
 
-  update() {
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-  }
-
+  // update() {
+  //   this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  // }
 
 
   showDonations() {
@@ -158,7 +149,7 @@ export class PortfolioPage {
   * Configure the Pie chart, define configuration options
   *
   */
-  createPieChart() {
+  createPieChart(amountArr:Array<number>, charityArr:Array<string>) {
 
     this.pieChartEl = new Chart(this.pieChart.nativeElement,
       {

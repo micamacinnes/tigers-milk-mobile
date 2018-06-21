@@ -16,18 +16,18 @@
 
 </ion-header>
 <ion-content padding>
-    <img src= {{charity.image}} />
-  <h1 class="charity">{{charity.name}}</h1>
+    <img src= {{charity?.img}} />
+  <h1 class="charity">{{charity?.name}}</h1>
 
 
     <div class="line"></div>
     <h4 class="headings">Our Mission</h4>
-    <p>{{charity.slogan}}</p>
+    <!-- <p>{{charity.slogan}}</p> -->
 
     <div class="line"></div>
 
     <h4 class="headings">What We Do</h4>
-    <p>{{charity.about}}</p>
+    <p>{{charity?.about}}</p>
 
     <div class="line"></div>
 
@@ -46,7 +46,7 @@
       <!--The fab button-->
     <ion-fab right bottom>
       <button ion-fab mini color="main">
-          <ion-icon name="share-alt" color="light"></ion-icon>
+          <ion-icon name="md-share" color="light"></ion-icon>
       </button>
       <ion-fab-list side="left" color="main">
           <button ion-fab color="main">
@@ -75,7 +75,7 @@
 
 
   <div class="donate">
-      <button ion-button (click)="navigateToPayment()" class="key">Donate Now!</button>
+      <button ion-button (click)="navigateToPayment(charity.id)" class="key">Donate Now!</button>
   </div>
   
 
