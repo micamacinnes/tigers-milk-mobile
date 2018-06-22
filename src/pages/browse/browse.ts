@@ -83,8 +83,12 @@ export class BrowsePage {
   }
 
   navigateToCharity(id: number) {
+    // id: number
     this.navCtrl.push(CharityPage, {
-      charityDetail: id
+      charityDetail: id,
+      // charityName: name,
+      // charity: charity,
+      // user:this.user
     });
 
   }

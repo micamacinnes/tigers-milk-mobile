@@ -29,8 +29,8 @@ export class ProfilePage {
 
   public user: User;
   private token: string;
-  public postProperties: Array<object> = [];
-  public postNumber: number;
+  // public postProperties: Array<object> = [];
+  // public postNumber: number;
   donations: Array<any> = [];
   public total: number;
 
@@ -38,7 +38,8 @@ export class ProfilePage {
     private http: Http, public modalCtrl: ModalController) {
     window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
     this.user = new User();
-
+    this.showDonations();
+    // localStorage.getItem("TOKEN");
   }
 
   showReactions(ev) {
@@ -52,6 +53,7 @@ export class ProfilePage {
     console.log("like");
   }
 
+
   ionViewDidLoad() {
     this.token = localStorage.getItem("TOKEN");
     console.log("profile token", this.token)
@@ -63,13 +65,18 @@ export class ProfilePage {
           this.user = result.json().user;
           console.log(this.user);
           
-          // console.log(this.user.totalDonated);
         },
         error => {
           console.log(error);
         }
       );
       this.showDonations();
+      // this.updateTotal();
+  }
+
+  ionViewWillEnter() {
+    this.showDonations();
+    
   }
 
   navigateToEditProfileModal(){
@@ -98,8 +105,13 @@ export class ProfilePage {
           for (var j = 0; j < allDonations.length; j++) {
             this.total += allDonations[j];
           }
-
+          console.log(this.total);
+          if (this.total == 0 || this.total == null){
+            this.total == 0;
+            return this.total;
+          }
           return this.total;
+          
 
         },
         error => {

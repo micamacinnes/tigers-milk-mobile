@@ -1,6 +1,6 @@
 import { MyCharity } from './myCharity';
 export class User {
-    user_id: number;
+    id: number;
     firstname: string;
     lastname: string;
     email: string;

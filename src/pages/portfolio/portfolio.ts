@@ -11,6 +11,8 @@ import { Slice } from '../../models/slice';
 import { User } from '../../models/user';
 import { Charity } from '../../models/charityProfile';
 import { Http } from '@angular/http';
+import { Donation } from '../../models/donation.js';
+// import { decode } from 'jsonwebtoken';
 
 
 @IonicPage()
@@ -20,173 +22,136 @@ import { Http } from '@angular/http';
 })
 
 export class PortfolioPage {
-
-  donations: Array<any> = [];
-  // public technologies: Array<Slice> = [];
+  public user: User = new User();
+  donations: Array<Donation> = [];
+  public technologies: Array<Slice> = [];
   public amount: number = 0;
-  public total: number;
-  numCharities: number;
+  public total: number = 0;
+  public totals: Array<Donation> = [];
   pie: any;
+  public token: string;
+  public max: number = 0;
+  jwt: string;
+  // public charityArr: Array<string> = [];
+  // public amountArr: Array<number> = [];
+  // public userID: number;
 
-  public charityArr: Array<string> = [];
-  public amountArr: Array<number> = [];
-
- 
 
   @ViewChild('pieChart') pieChart;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
 
-    // let colorArr: Array<string> = ["rgb(128,0,0)", "rgb(220,20,60)", "rgb(255,0,0)", "rgb(255,127,80)", "rgb(205,92,92)", "rgb(255,165,0)", "rgb(255,215,0)", "rgb(128,128,0)", "rgb(154,205,50)", "rgb(85,107,47)", "rgb(124,252,0)", "rgb(144,238,144)", "rgb(143,188,143)", "rgb(47,79,79)", "rgb(0,139,139)", "rgb(0,255,255)", "rgb(224,255,255)", "rgb(70,130,180)", "rgb(30,144,255)", "rgb(25,25,112)"];
+    this.jwt = localStorage.getItem('Token');
+    this.http.get("http://localhost:3000/donations?&jwt=" + localStorage.getItem("Token"), {
 
-    // let newSlice = new Slice();
-    // newSlice.technology = "Domestic Animal Rescue Group";
-    // newSlice.time = 40;
-    // newSlice.color = colorArr[1];
-    // this.technologies.push(newSlice);
-    // let newSlice1 = new Slice();
-    // newSlice1.technology = "Tiger Haven";
-    // newSlice1.time = 100;
-    // newSlice1.color = colorArr[2];
-    // this.technologies.push(newSlice1);
-    // let newSlice2 = new Slice();
-    // newSlice2.technology = "Rhino Rescuse Project";
-    // newSlice2.time = 160;
-    // newSlice2.color = colorArr[5];
-    // this.technologies.push(newSlice2);
+    })
+      .subscribe(
+        result => {
+          this.donations = result.json();
+          var other = true;
+          for (let i = 0; i < this.donations.length; i++) {
+            this.total += this.donations[i].amount;
+            // console
+            for (let j = 0; j < this.totals.length; j++) {
+              if (this.totals[j].charityID && (this.donations[i].charityID== this.totals[j].charityID)){
+              other = false;
+              this.totals[j].amount += this.donations[i].amount;
+            }
+            }
+            if (other){
+              this.totals.push(this.donations[i]);
+            }
+           other = true;
+          }
+
+          this.max = this.totals[0].amount;
+
+          for (var k = 0; k < this.totals.length; k++) {
+            let newSlice = new Slice();
+            newSlice.technology = this.totals[k].name;
+            if (this.totals[k].amount > this.max) {
+              this.max = this.totals[k].amount;
+            }
+            let colorArr: Array<string> = ["rgb(128,0,0)", "rgb(220,20,60)", "rgb(255,0,0)", "rgb(255,127,80)", "rgb(205,92,92)", "rgb(255,165,0)", "rgb(255,215,0)", "rgb(128,128,0)", "rgb(154,205,50)", "rgb(85,107,47)", "rgb(124,252,0)", "rgb(144,238,144)", "rgb(143,188,143)", "rgb(47,79,79)", "rgb(0,139,139)", "rgb(0,255,255)", "rgb(224,255,255)", "rgb(70,130,180)", "rgb(30,144,255)", "rgb(25,25,112)"];
+            newSlice.time = this.totals[k].amount;
+            newSlice.color = colorArr[k];
+            this.technologies.push(newSlice);
+          }
+          this.defineChartData();
+          this.createPieChart();
+
+        },
+        error => {
+          console.log(error);
+        }
+      )
+
+
+
   }
 
-    // let newSlice1 = new Slice();
-    // newSlice1.technology = "Tiger Haven";
-    // newSlice1.time = 100;
-    // newSlice1.color = colorArr[2];
-    // this.technologies.push(newSlice1);
-
-    // let newSlice2 = new Slice();
-    // newSlice2.technology = "Rhino Rescuse Project";
-    // newSlice2.time = 160;
-    // newSlice2.color = colorArr[5];
-    // this.technologies.push(newSlice2);
-
-  
+  update() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
 
   public pieChartEl: any;
   public chartLabels: any = [];
-  // public chartValues: any = [];
+  public chartValues: any = [];
   public chartColours: any = [];
   public chartHoverColours: any = [];
   public chartLoadingEl: any;
 
   ionViewDidLoad() {
     // this.defineChartData();
-    this.showDonations();
-    this.getDonationAmount();
+
+    // this.getDonationAmount();
+    // this.showDonations();
+
+    // this.createPieChart();
   }
 
-  // update() {
-  //   this.navCtrl.setRoot(this.navCtrl.getActive().component);
-  // }
+  defineChartData(): void {
+    let y: any;
 
-  showDonations() {
-    this.http.get("http://localhost:3000/donations?jwt=" + localStorage.getItem("Token"), {
-    })
-      .subscribe(
-        result => {
-          this.donations = result.json();
-          this.total = 0;
-          var allDonations: Array<number> = [];
+    for (y in this.technologies) {
+      var tech = this.technologies[y];
 
-          // get all donations and push into array
-          for (var i = 0; i < this.donations.length; i++) {
-            var donationAmount = this.donations[i].amount;
-            allDonations.push(donationAmount);
-          }
-          // sum up the total donations
-          for (var j = 0; j < allDonations.length; j++) {
-            this.total += allDonations[j];
-          }
-
-          return this.total;
-
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.chartLabels.push(tech.technology);
+      this.chartValues.push(tech.time);
+      this.chartColours.push(tech.color);
+    }
   }
 
-  getDonationAmount() {
-    this.http.get("http://localhost:3000/donations?&jwt=" + localStorage.getItem("Token"), {
-    })
-      .subscribe(
-        result => {
-          console.log(result);
-          var resultCharities = result.json();
-          // map - updated charity to updated donation amount 
-          let donationMap: Map<string, number> = new Map<string, number>();
-          var charityArr2: Array<string> = [];
-          var amountArr2: Array<number> = [];
-
-
-          for (var i = 0; i < resultCharities.length; i++) {
-            if (donationMap.has(resultCharities[i].charityName)) {
-              donationMap.set(resultCharities[i].charityName, donationMap.get(resultCharities[i].charityName) + resultCharities[i].amount);
-            }
-            else {
-              donationMap.set(resultCharities[i].charityName, resultCharities[i].amount);
-              this.charityArr.push(resultCharities[i].charityName);
-            }
-
-          }
-
-          this.numCharities = this.charityArr.length;
-          for (var b = 0; b < this.charityArr.length; b++) {
-            this.amountArr.push(donationMap.get(this.charityArr[b]));
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
+  ionViewWillEnter(){
+    this.createPieChart();
   }
-
 
   /**
   *
   * Configure the Pie chart, define configuration options
   *
   */
-  createPieChart(amountArr:Array<number>, charityArr:Array<string>) {
+  createPieChart() {
 
-    this.pieChartEl = new Chart(this.pieChart.nativeElement,
+    this.pie = new Chart(this.pieChart.nativeElement,
       {
         type: 'pie',
         data: {
           labels: this.chartLabels,
           datasets: [{
             label: 'Donation Breakdown',
-            data: this.amountArr,
+            data: this.chartValues,
             duration: 2000,
             easing: 'easeInQuart',
-            backgroundColor: [
-              "rgb(128,0,0)",
-              "rgb(220,20,60)",
-              "rgb(255,0,0)",
-              "rgb(255,127,80)",
-              "rgb(205,92,92)",
-              "rgb(255,165,0)",
-              "rgb(255,215,0)",
-              "rgb(128,128,0)",
-              "rgb(154,205,50)"
-            ],
-            hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56",
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56"
-            ]
+            backgroundColor: this.chartColours,
+            // hoverBackgroundColor: [
+            //   "#FF6384",
+            //   "#36A2EB",
+            //   "#FFCE56",
+            //   "#FF6384",
+            //   "#36A2EB",
+            //   "#FFCE56"
+            // ]
           }]
         },
         options: {
@@ -200,13 +165,14 @@ export class PortfolioPage {
             }
           },
           animation: {
-            duration: 5000
+            duration: 3000
           }
         }
       });
 
-    this.chartLoadingEl = this.pieChartEl.generateLegend();
+    this.chartLoadingEl = this.pie.generateLegend();
   }
+
 
 
 

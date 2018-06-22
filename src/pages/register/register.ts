@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 // import { ProfilePage } from '../profile/profile';
 // import { TabsPage } from '../tabs/tabs';
 import { Http } from '@angular/http';
@@ -15,8 +15,17 @@ export class RegisterPage {
   public lastname: string;
   public passwordCheck: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public alertCtrl: AlertController) {
 
+  }
+
+  passwordsDontMatch(){
+    const alert = this.alertCtrl.create({
+      title: 'Passwords do not match',
+      subTitle: 'Please enter again',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   register() {
@@ -46,7 +55,9 @@ export class RegisterPage {
         );
         console.log('Passwords do not match');
         // add alert 
+        this.passwordsDontMatch();
     }
+
 
 
   }

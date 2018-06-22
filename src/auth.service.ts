@@ -20,7 +20,9 @@ export class AuthService {
           var responseJson = result.json();
 
           // store the token in local storage
-          localStorage.setItem("Token", responseJson.token);
+          console.log(responseJson.token);
+          localStorage.setItem("TOKEN", responseJson.token);
+          console.log(responseJson.token);
 
           //this.navCtrl.push(ProfilePage);
           callback();

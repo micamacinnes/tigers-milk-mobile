@@ -12,7 +12,7 @@
     </ion-buttons>
     <ion-title>Edit Profile</ion-title>
     <ion-buttons end>
-      <button ion-button clear >Save</button>
+      <button ion-button clear (click)="changeProfileInfo()">Save</button>
     </ion-buttons>
   </ion-navbar>
 
@@ -26,20 +26,28 @@
 
     <ion-item>
       <ion-label fixed> First Name</ion-label>
-      <ion-input type="text" value="{{this.user.firstname}}">{{this.user.firstname}}</ion-input>
+      <ion-input type="text" [(ngModel)]="newFirstname"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed> Last Name</ion-label>
-      <ion-input type="text" value="{{this.user.lastname}}">{{this.user.lastname}}</ion-input>
+      <ion-input type="text" [(ngModel)]="newLastname"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed> Email</ion-label>
-      <ion-input type="text" value="{{this.user.email}}">{{this.user.email}}</ion-input>
+      <ion-input type="text" [(ngModel)]="newEmail"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label fixed> Password</ion-label>
+      <ion-input type="text" [(ngModel)]="newPassword"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label fixed> Confirm Password</ion-label>
+      <ion-input type="text" [(ngModel)]="newConfirmPassword"></ion-input>
+    </ion-item>
   </ion-list>
 
 

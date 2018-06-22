@@ -27,7 +27,7 @@ export class StripeJavaScriptPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController, public toastCtrl: ToastController, private http: Http) {
-    this.charityDetail = this.navParams.get("charity");
+    this.charityDetail = this.navParams.get("charityDetail");
   }
 
   ionViewWillEnter(){
@@ -96,6 +96,7 @@ export class StripeJavaScriptPage {
               this.stripeTokenHandler(result.token);
               // this.navCtrl.setRoot(PortfolioPage);
               this.sendDonation();
+              this.navCtrl.pop();
             }
           })
       } else {
@@ -109,6 +110,7 @@ export class StripeJavaScriptPage {
               this.stripeSourceHandler(result.source);
               // this.navCtrl.setRoot(PortfolioPage);
               this.sendDonation();
+              this.navCtrl.pop();
             }
           });
       }
@@ -176,7 +178,8 @@ export class StripeJavaScriptPage {
   sendDonation() {
     let toast = this.toastCtrl.create({
       message: 'Donation Successful!',
-      duration: 3000
+      duration: 2000,
+      position: 'middle'
     });
     console.log('Donate clicked');
     toast.present();
@@ -201,14 +204,6 @@ export class StripeJavaScriptPage {
     };
   
 }
-
-
-
-
-
-
-
-
 
   // confirmDonate() {
   //   const confirm = this.alertCtrl.create({

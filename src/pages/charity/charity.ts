@@ -23,13 +23,19 @@ export class CharityPage {
   
   public charity: any;
   public charityDetail: any;
-
+  public charityName: string;
   public favouriteCharity: any;
 
+  // public user: User = new User();
+  //   public charities: Charity = new Charity();
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public http: Http,    public alertCtrl: AlertController) {
       this.charityDetail = this.navParams.get("charityDetail");
+      // this.charityName = this.navParams.get("charityName");
+
+      // this.charities = this.navParams.get("charity");
+      // this.user = this.navParams.get("user");
     }
 
 
@@ -56,7 +62,10 @@ export class CharityPage {
 
   navigateToPayment(id: number) {
     this.navCtrl.push(StripeJavaScriptPage, {
-      
+      charityDetail: this.charityDetail,
+      // charityName: name
+      // user: this.user,
+      // charity: this.charities
     });
   }
 
