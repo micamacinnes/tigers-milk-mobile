@@ -55,8 +55,12 @@ export class RegisterPage {
         );
         console.log('Passwords do not match');
         // add alert 
-        this.passwordsDontMatch();
+        
     }
+    else {
+      this.passwordsDontMatch();
+    }
+   
 
 
 

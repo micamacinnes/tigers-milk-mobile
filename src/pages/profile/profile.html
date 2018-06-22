@@ -37,8 +37,20 @@
     </ion-grid>
     
   </div>
+
+  <ion-list>
+      <ion-list-header>
+        Personal Information
+      </ion-list-header>
+      <ion-item>Firstname: {{this.user.firstname}}</ion-item>
+      <ion-item>Lastname: {{this.user.lastname}}</ion-item>
+      <ion-item>Email: {{this.user.email}}</ion-item>
+      <ion-item>Role: User</ion-item>
+    </ion-list>
+
+
   
-  
+<!--   
   <div class="history">
     <ion-item-group>
       <ion-item-divider color="light" class="menu">Donation History</ion-item-divider>
@@ -51,7 +63,7 @@
             </ion-col>
             <ion-col text-wrap>
               <!-- {{donation.charityName}} -->
-            </ion-col>
+            <!-- </ion-col>
             <ion-col text-wrap class="date">
               {{donation.date}}
             </ion-col>
@@ -59,7 +71,7 @@
         </ion-item>
       </ion-list>
     </ion-item-group>
-    </div>
+    </div>  -->
 
 
 

@@ -189,7 +189,7 @@ export class StripeJavaScriptPage {
     createDonation() {
       this.http.post("http://localhost:3000/createDonation?charityID=" + this.charityDetail + "&jwt=" + localStorage.getItem("Token"), {
         amount: this.amount,
-        date: "20 June",
+        date: new Date().toDateString(),
       })
   
         .subscribe(

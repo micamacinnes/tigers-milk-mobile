@@ -32,7 +32,7 @@ export class PortfolioPage {
   public token: string;
   public max: number = 0;
   jwt: string;
-  // public charityArr: Array<string> = [];
+  public charities: Array<any> = [];
   // public amountArr: Array<number> = [];
   // public userID: number;
 
@@ -72,7 +72,7 @@ export class PortfolioPage {
             if (this.totals[k].amount > this.max) {
               this.max = this.totals[k].amount;
             }
-            let colorArr: Array<string> = ["rgb(128,0,0)", "rgb(220,20,60)", "rgb(255,0,0)", "rgb(255,127,80)", "rgb(205,92,92)", "rgb(255,165,0)", "rgb(255,215,0)", "rgb(128,128,0)", "rgb(154,205,50)", "rgb(85,107,47)", "rgb(124,252,0)", "rgb(144,238,144)", "rgb(143,188,143)", "rgb(47,79,79)", "rgb(0,139,139)", "rgb(0,255,255)", "rgb(224,255,255)", "rgb(70,130,180)", "rgb(30,144,255)", "rgb(25,25,112)"];
+            let colorArr: Array<string> = ["rgb(205,92,92)", "rgb(255,165,0)","rgb(128,0,0)","rgb(255,127,80)", "rgb(220,20,60)", "rgb(255,0,0)",  "rgb(255,215,0)", "rgb(128,128,0)", "rgb(154,205,50)", "rgb(85,107,47)", "rgb(124,252,0)", "rgb(144,238,144)", "rgb(143,188,143)", "rgb(47,79,79)", "rgb(0,139,139)", "rgb(0,255,255)", "rgb(224,255,255)", "rgb(70,130,180)", "rgb(30,144,255)", "rgb(25,25,112)"];
             newSlice.time = this.totals[k].amount;
             newSlice.color = colorArr[k];
             this.technologies.push(newSlice);
@@ -107,6 +107,7 @@ export class PortfolioPage {
     // this.getDonationAmount();
     // this.showDonations();
 
+    
     // this.createPieChart();
   }
 
@@ -116,15 +117,25 @@ export class PortfolioPage {
     for (y in this.technologies) {
       var tech = this.technologies[y];
 
-      this.chartLabels.push(tech.technology);
+      // this.chartLabels.push(tech.technology);
       this.chartValues.push(tech.time);
       this.chartColours.push(tech.color);
     }
+    this.chartLabels = ["Tiger Haven", "Rhino Rescue Project"]
   }
 
   ionViewWillEnter(){
     this.createPieChart();
   }
+
+  // charityList(){
+  //   var i;
+  //   var list = [];
+  //   for (i = 0; this.charities.length;i++){
+  //     list.push(this.charities[i].name);
+  //   }
+  //   return list;
+  // }
 
   /**
   *
